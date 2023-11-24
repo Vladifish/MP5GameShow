@@ -49,9 +49,6 @@ public class QuizServlet extends HttpServlet {
         setupPageQuestions(session);
         session.setAttribute("level", level+"");
         
-        String curr = ((String[][])session.getAttribute("current-question"))[0][0];
-        response.addCookie(new Cookie("current-question", curr));
-        
         response.sendRedirect(request.getContextPath() + "/quiz-page.jsp");
     }
     

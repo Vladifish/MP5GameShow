@@ -4,7 +4,6 @@
  */
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -60,13 +59,13 @@ public class QuizServlet extends HttpServlet {
         Deque<String[][]> outQueue = new ArrayDeque<>();
         
         // Easy Questions
-        selectRandomQuestions(0,9, outQueue);
+        selectRandomQuestions(0,10, outQueue);
         
         // Medium Questions
-        selectRandomQuestions(10,9, outQueue);
+        selectRandomQuestions(10,10, outQueue);
         
         //Hard Questions
-        selectRandomQuestions(20,8, outQueue);
+        selectRandomQuestions(20,9, outQueue);
         
         // Ultra Hard / Big Money Question
         outQueue.addLast(QuestionBank[29]);
@@ -82,8 +81,9 @@ public class QuizServlet extends HttpServlet {
             queue.addLast(QuestionBank[rand]);
             
             // swap with last element to guarantee no repeat
-            String[][] temp = QuestionBank[end]; 
-            QuestionBank[end] = QuestionBank[rand];
+            int lastEle = floor + end - 1;
+            String[][] temp = QuestionBank[lastEle]; 
+            QuestionBank[lastEle] = QuestionBank[rand];
             QuestionBank[rand] = temp;
             
             // adjust range so that we don't get duplicate questions
@@ -107,6 +107,8 @@ public class QuizServlet extends HttpServlet {
     String[][][] QuestionBank = {
         
         // Easy Questions
+        {{"0Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+         {"Blue", "White", "Red", "Orange"}},
         {{"1Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
         {{"2Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
@@ -124,8 +126,6 @@ public class QuizServlet extends HttpServlet {
         {{"8Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
         {{"9Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
-         {"Blue", "White", "Red", "Orange"}},
-        {{"10Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
         
         // Medium Questions

@@ -1,0 +1,74 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 11 23, 23, 1:34:25 PM
+    Author     : Vlad
+*/
+
+body {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#question-section {
+    width: 100%;
+    text-align: center;
+}
+
+#answer-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.quiz-form {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    row-gap: 1rem;
+}
+
+/* radio button code based from here: https://markheath.net/post/customize-radio-button-css*/
+
+.quiz-form input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+}
+
+.quiz-form label {
+    display: inline-block;
+    background-color: grey;
+    padding: 30px 60px;
+    font-family: sans-serif, Arial;
+    font-size: 16px;
+    border: 2px solid #444;
+    border-radius: 4px;
+    width: 30%;
+}
+
+.quiz-form input[type="radio"]:checked + label {
+    background-color:#bfb;
+    border-color: #4c4;
+}
+
+.quiz-form input[type="radio"]:focus + label {
+    border: 2px dashed #444;
+}
+
+.quiz-form input[type="submit"] {
+    width: 95%;
+    height: 40px;
+}
+
+
+

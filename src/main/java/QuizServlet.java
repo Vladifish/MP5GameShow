@@ -41,7 +41,8 @@ public class QuizServlet extends HttpServlet {
             session.setAttribute("score", "0");
         }
         else {
-            if(!checkAnswers(session)) // check if the player answered right
+            String ans = request.getParameter("answer");
+            if(!checkAnswer(session, ans)) // check if the player answered right
                 response.sendRedirect(request.getContextPath() + "/loss-page.jsp");
         }
         
@@ -61,8 +62,8 @@ public class QuizServlet extends HttpServlet {
     }
     
     
-    // Based my timing code on Stefan Evans' Answer in
-    // this blog
+    // Based my timing code on Stefan Evans' answer in
+    // this chatroom
     // https://coderanch.com/t/282680/java/create-timer-jsp
     private void setTimer(HttpSession session) {
         long now = System.currentTimeMillis();
@@ -107,14 +108,32 @@ public class QuizServlet extends HttpServlet {
         }
     }
     
-    // TODO: setup checking system
-    private boolean checkAnswers(HttpSession session) {
-        return true;
+    private boolean checkAnswer(HttpSession session, String ans) {
+        // Notes: 
+        // question[0][1] = correct answer
+        // question[0][2] = difficulty
+        
+        String[][] question = (String[][])session.getAttribute("current-question");
+        if (ans.equals(question[0][1])) {
+            long score = computeScore(session, question[0][2]);
+            if (score != -1L)
+                return true;
+        }
+        
+        // reach this point by failing every check
+        return false;
     }
     
-    // TODO:
-    // - Sets the question and the answers in the quiz page
-    // - sets everything up using the session
+    private long computeScore(HttpSession session, String difficulty) {
+        
+        if (true) {
+            return 1;
+        } else {
+            return -1L;
+        }
+        
+    }
+    
     private void setupPageQuestions(HttpSession session) {
         String[][] question = ((Deque<String[][]>)session.getAttribute("question-queue")).poll();
         session.setAttribute("current-question", question);
@@ -123,72 +142,72 @@ public class QuizServlet extends HttpServlet {
     String[][][] QuestionBank = {
         
         // Easy Questions
-        {{"0Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"0Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Ez"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"1Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"1Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Ez"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"2Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"2Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Ez"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"3Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"3Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Ez"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"4Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"4Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Ez"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"5Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"5Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Ez"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"6Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"6Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Ez"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"7Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"7Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Ez"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"8Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"8Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Ez"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"9Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"9Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Ez"}, 
          {"Blue", "White", "Red", "Orange"}},
         
         // Medium Questions
         
-        {{"med0Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med0Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Med"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"med1Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med1Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Med"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"med2Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med2Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Med"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"med3Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med3Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Med"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"med4Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med4Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Med"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"med5Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med5Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Med"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"med6Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med6Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Med"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"med7Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med7Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Med"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"med8Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med8Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Med"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"med9Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med9Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Med"}, 
          {"Blue", "White", "Red", "Orange"}},
         
         // Hard Questions
-        {{"hard0Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard0Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Hard"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"hard1Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard1Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Hard"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"med2Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med2Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Hard"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"hard3Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard3Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Hard"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"hard4Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard4Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Hard"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"hard5Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard5Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Hard"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"hard6Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard6Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Hard"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"hard7Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard7Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Hard"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"hard8Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard8Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Hard"}, 
          {"Blue", "White", "Red", "Orange"}},
         
         // Ultra Hard Question
-        {{"uhardAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"uhardAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Bonus"}, 
          {"Blue", "White", "Red", "Orange"}}
     };
     

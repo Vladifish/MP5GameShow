@@ -7,8 +7,13 @@ Who wants to be a millionaire clone, made with Java Servlets and JSPs.
 - Session Manipulation
 
 ## Question Randomizer Algorithm
-- ensures that we get randomized questions with no duplicates
+- Ensures that we get randomized questions with no duplicates
 ```java
+// difficulty is based on range
+// e.g. 0-5 is easy, 6-10 is medium, etc.
+// holds questions as well as their possible answers
+String[][][] QuestionBank;
+
 private void selectRandomQuestions(int floor, int end, Deque<String[][]> queue) {
         
         // We generate three questions per difficulty

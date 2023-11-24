@@ -66,10 +66,10 @@ public class QuizServlet extends HttpServlet {
         selectRandomQuestions(10,9, outQueue);
         
         //Hard Questions
-        selectRandomQuestions(20,9, outQueue);
+        selectRandomQuestions(20,8, outQueue);
         
         // Ultra Hard / Big Money Question
-        outQueue.addLast(QuestionBank[28]);
+        outQueue.addLast(QuestionBank[29]);
         
         return outQueue;
     }
@@ -130,45 +130,45 @@ public class QuizServlet extends HttpServlet {
         
         // Medium Questions
         
-        {{"medAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med0Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"medAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med1Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"medAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med2Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"medAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med3Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"medAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med4Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"medAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med5Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"medAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med6Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"medAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med7Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"medAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med8Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"medAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med9Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
         
         // Hard Questions
-        {{"hardAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard0Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"hardAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard1Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"medAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"med2Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"hardAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard3Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"hardAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard4Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"hardAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard5Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"hardAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard6Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"hardAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard7Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
-        {{"hardAnong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
+        {{"hard8Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B"}, 
          {"Blue", "White", "Red", "Orange"}},
         
         // Ultra Hard Question

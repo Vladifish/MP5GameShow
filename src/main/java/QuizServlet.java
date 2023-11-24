@@ -38,6 +38,7 @@ public class QuizServlet extends HttpServlet {
         
         if (level == 0) {
             session.setAttribute("question-queue", CreateQuestionQueue());
+            session.setAttribute("score", "0");
         }
         else {
             if(!checkAnswers(session)) // check if the player answered right
@@ -45,11 +46,29 @@ public class QuizServlet extends HttpServlet {
         }
         
         // before exit we update everything
-        level = (level < 10) ? level+1 : 99;
+        
+        // Fix the questions
         setupPageQuestions(session);
+        
+        // Fix the current level
+        level = (level < 10) ? level+1 : 99;
         session.setAttribute("level", level+"");
         
+        // Set the timer
+        setTimer(session);
+        
         response.sendRedirect(request.getContextPath() + "/quiz-page.jsp");
+    }
+    
+    
+    // Based my timing code on Stefan Evans' Answer in
+    // this blog
+    // https://coderanch.com/t/282680/java/create-timer-jsp
+    private void setTimer(HttpSession session) {
+        long now = System.currentTimeMillis();
+        long allotedTime = now + 120 * 1000;
+        session.setAttribute("start-time", now+""); // casting to a string, since it's easier to work with it
+        session.setAttribute("end-by-time", allotedTime+"");
     }
     
     private Deque<String[][]> CreateQuestionQueue() {

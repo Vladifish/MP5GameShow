@@ -15,7 +15,7 @@
     <body>
         <h1>Uh Oh! You Lost</h1>
         <a href="login_page.jsp">Try Again?</a>
-        <% 
+        <%
             HttpSession sesh = request.getSession();
             if (sesh != null) {
                 sesh.invalidate();

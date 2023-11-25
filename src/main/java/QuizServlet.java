@@ -32,10 +32,11 @@ public class QuizServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         
         if (session == null || session.getAttribute("level") == null)
-            response.sendRedirect(request.getContextPath() + "/redirectpage.jsp");
+            request.getRequestDispatcher("login_page.jsp").forward(request,response);
         
         int level = Integer.parseInt((String)session.getAttribute("level"));
         
+        // Different first-run
         if (level == 0) {
             session.setAttribute("question-queue", CreateQuestionQueue());
             session.setAttribute("score", "0");
@@ -43,7 +44,7 @@ public class QuizServlet extends HttpServlet {
         else {
             String ans = request.getParameter("answer");
             if(!checkAnswer(session, ans)) // check if the player answered right
-                response.sendRedirect(request.getContextPath() + "/loss-page.jsp");
+                request.getRequestDispatcher("loss-page.jsp").forward(request,response);
         }
         
         // before exit we update everything
@@ -116,7 +117,7 @@ public class QuizServlet extends HttpServlet {
         String[][] question = (String[][])session.getAttribute("current-question");
         if (ans.equals(question[0][1])) {
             long score = computeScore(session, question[0][2]);
-            if (score != -1L)
+            if (score != -1)
                 return true;
         }
         
@@ -129,7 +130,7 @@ public class QuizServlet extends HttpServlet {
         if (true) {
             return 1;
         } else {
-            return -1L;
+            return -1;
         }
         
     }

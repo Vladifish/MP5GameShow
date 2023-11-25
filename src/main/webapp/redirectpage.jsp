@@ -14,7 +14,7 @@
     <body>
         <h1>Player Not Logged In! Redirecting</h1>
         <% 
-            response.sendRedirect("/MP5GameShow/login_page.jsp");
+            response.sendRedirect(request.getContextPath() + "/login_page.jsp");
         %>
     </body>
 </html>

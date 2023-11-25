@@ -9,12 +9,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Redirecting..</title>
     </head>
     <body>
         <h1>Player Not Logged In! Redirecting</h1>
         <% 
-            response.sendRedirect(request.getContextPath() + "/login_page.jsp");
+            long start = System.currentTimeMillis();
+            while (System.currentTimeMillis()- start < 3000 ) {
+            
+            }
+                response.sendRedirect(request.getContextPath() + "/login_page.jsp");
         %>
     </body>
 </html>

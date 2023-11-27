@@ -24,6 +24,7 @@
             }
         %>
         <h1>Congratulations <%= sesh.getAttribute("username") %>!</h1>
+        <h3>Your Final Score is: $<%= sesh.getAttribute("score")%></h3>
         <!-- fixed scrolling leaderboard here-->
         
         <!-- Redirect Here -->

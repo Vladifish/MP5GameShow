@@ -123,13 +123,51 @@ public class QuizServlet extends HttpServlet {
         
     }
     
+    // Points without multipliers
+    enum BASE_SCORE {
+        EASY(1000), 
+        MEDIUM(3000), 
+        HARD(5000), 
+        ULTRA_HARD(5001);
+        private final int score;
+        
+        private BASE_SCORE(int score) {
+            this.score = score;
+        }
+        
+        int get(){
+            return score;
+        }
+    }
     private void computeScore(HttpSession session, String difficulty, long time_end) {
         long deadline = Long.parseLong((String)session.getAttribute("end-by-time"));
-        if (time_end > deadline) {
-            return;
-        } else {
-            return;
+        double score = 0;
+        
+        switch(difficulty) {
+            case "Ez":
+                score = BASE_SCORE.EASY.get();
+                break;
+            case "Med":
+                score = BASE_SCORE.MEDIUM.get();
+                break;
+            case "Hard":
+                score = BASE_SCORE.HARD.get();
+                break;
+            case "Bonus":
+                score = BASE_SCORE.ULTRA_HARD.get();
+                break; // not needed just adding this for consistency
         }
+        
+        double mult = 1;
+        double time_diff = (deadline - time_end);
+        // test variables
+        if (time_diff > 0) {
+            mult += (time_diff / 120_000);
+        }
+        
+        // truncates the score to 2 decimal places for readability
+        session.setAttribute("score", String.format("%.2f",(score*mult)));
+        
         
     }
     

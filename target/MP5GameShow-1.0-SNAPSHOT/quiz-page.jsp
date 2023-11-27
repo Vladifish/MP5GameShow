@@ -22,8 +22,9 @@
             
             String level = (String)sesh.getAttribute("level");
             
-            if (level.equals("99")) {
-                response.sendRedirect("/MP5GameShow/victory_page.jsp");
+            // doesn't quite work
+            if (Integer.parseInt(level) == 99) {
+                response.sendRedirect(request.getContextPath() + "/victory_page.jsp");
             }
             
             String[][] question = (String[][])sesh.getAttribute("current-question");

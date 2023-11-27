@@ -56,6 +56,10 @@ public class QuizServlet extends HttpServlet {
         level = (level < 10) ? level+1 : 99;
         session.setAttribute("level", level+"");
         
+        if (level == 99) {
+            request.getRequestDispatcher("victory_page.jsp").forward(request,response);
+        }
+        
         // Set the timer
         setTimer(session);
         

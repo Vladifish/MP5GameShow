@@ -15,11 +15,13 @@
         <% 
             HttpSession sesh = request.getSession(false);
             if (sesh == null || sesh.getAttribute("username") == null || 
-                sesh.getAttribute("level") == null || 
-                !sesh.getAttribute("level").equals((Object)"99")) {
-               response.sendRedirect("/MP5GameShow/redirectpage.jsp");
+                sesh.getAttribute("level") == null) {
+               response.sendRedirect("/redirectpage.jsp");
             }
-            
+            int level = Integer.parseInt((String)sesh.getAttribute("level"));
+            if (level != 99) {
+                response.sendRedirect("/redirectpage.jsp");
+            }
         %>
         <h1>Congratulations <%= sesh.getAttribute("username") %>!</h1>
         <!-- fixed scrolling leaderboard here-->

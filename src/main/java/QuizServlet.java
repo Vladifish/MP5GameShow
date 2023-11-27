@@ -115,22 +115,20 @@ public class QuizServlet extends HttpServlet {
         // question[0][2] = difficulty
         
         String[][] question = (String[][])session.getAttribute("current-question");
-        if (ans.equals(question[0][1])) {
-            long score = computeScore(session, question[0][2]);
-            if (score != -1)
-                return true;
-        }
+        long time_end = System.currentTimeMillis();
+        computeScore(session, question[0][2], time_end);
         
-        // reach this point by failing every check
-        return false;
+        // check if correct answer
+        return ans.equals(question[0][1]);
+        
     }
     
-    private long computeScore(HttpSession session, String difficulty) {
-        
-        if (true) {
-            return 1;
+    private void computeScore(HttpSession session, String difficulty, long time_end) {
+        long deadline = Long.parseLong((String)session.getAttribute("end-by-time"));
+        if (time_end > deadline) {
+            return;
         } else {
-            return -1;
+            return;
         }
         
     }

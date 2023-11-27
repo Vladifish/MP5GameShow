@@ -15,7 +15,7 @@
         <h1>Player Not Logged In! Redirecting</h1>
         <% 
             long start = System.currentTimeMillis();
-            while (System.currentTimeMillis()- start < 3000 ) {
+            while (System.currentTimeMillis()- start < 1500 ) {
             
             }
                 response.sendRedirect(request.getContextPath() + "/login_page.jsp");

@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Who Wants to Be?</title>
     </head>
     <body>
         <h1>Who wants to be?</h1>

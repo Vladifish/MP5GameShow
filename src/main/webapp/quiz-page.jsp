@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/quiz_page.css">
-        <title>JSP Page</title>
+        <title>Who Wants to Be?</title>
     </head>
     <body>
         <% 
@@ -27,11 +27,13 @@
             }
             
             String[][] question = (String[][])sesh.getAttribute("current-question");
+            String username = (String)sesh.getAttribute("username");
         %>
-        <a href="loss-page.jsp">Give Up</a>
+        <% if (sesh != null) {%>
+        <a href="loss-page.jsp" id="give-up-button">Give Up</a>
         <section id="question-section"> 
             <h1>Question #<%= level%></h1>
-            <h3><%= question[0][0]%></h3>
+            <h3><%= username%>, <%= question[0][0]%></h3>
         </section>
         
         <section id="answer-section">
@@ -51,7 +53,7 @@
             <input type="submit">
         </form>
         </section>
-        
+        <%} %>
         
     </body>
 </html>

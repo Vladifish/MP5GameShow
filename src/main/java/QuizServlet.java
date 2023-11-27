@@ -169,8 +169,12 @@ public class QuizServlet extends HttpServlet {
             mult += (time_diff / 120_000);
         }
         
+        score *= mult;
+        
+        double new_score = Double.parseDouble((String)session.getAttribute("score")) + score;
+        
         // truncates the score to 2 decimal places for readability
-        session.setAttribute("score", String.format("%.2f",(score*mult)));
+        session.setAttribute("score", String.format("%.2f",new_score));
         
         
     }

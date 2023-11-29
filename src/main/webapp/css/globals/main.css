@@ -26,9 +26,10 @@ main {
     /* --black-primary: */
     font-family: "Trebuchet MS", sans-serif;
     font-size: 16px;
+    --semi-bold: 600;
 }
 
-p, label {
+p, label, input {
     font-size: 1rem;
 }
 
@@ -38,4 +39,14 @@ h1 {
 
 h3 {
     font-size: 1.25rem;
+}
+
+input[type="text"], input[type="submit"] {
+    border: 1px lightgrey solid;
+}
+
+input[type="submit"]:hover {
+    background-color: grey;
+    transition-delay: .05s;
+    text-shadow: 2px black;
 }

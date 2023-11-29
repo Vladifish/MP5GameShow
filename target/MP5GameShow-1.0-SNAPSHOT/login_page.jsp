@@ -16,7 +16,7 @@
         <main>
             <h1>Who wants to be?</h1>
             <form action="/MP5GameShow/LoginServlet" method="post">
-                <label for="username">username:</label><input type="text" name="username"/>
+                <label for="username">Enter a Username: </label><input type="text" name="username" placeholder="username" required/>
                 <input type="submit">
             </form>
         </main>

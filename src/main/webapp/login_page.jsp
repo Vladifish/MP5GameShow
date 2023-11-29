@@ -9,14 +9,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/main.css">
         <title>Who Wants to Be?</title>
     </head>
     <body>
-        <h1>Who wants to be?</h1>
-        <form action="/MP5GameShow/LoginServlet" method="post">
-            <label for="username">username:</label><input type="text" name="username"/>
-            <input type="submit">
-        </form>
+        <main>
+            <h1>Who wants to be?</h1>
+            <form action="/MP5GameShow/LoginServlet" method="post">
+                <label for="username">username:</label><input type="text" name="username"/>
+                <input type="submit">
+            </form>
+        </main>
         <%
             HttpSession sesh = request.getSession(false);
             if(sesh != null) {

@@ -24,12 +24,13 @@
                 response.sendRedirect("/redirectpage.jsp");
             }
         %>
-        <h1>Congratulations <%= sesh.getAttribute("username") %>!</h1>
-        <h3>Your Final Score is: $<%= sesh.getAttribute("score")%></h3>
+        <main>
+            <h1>Congratulations <%= sesh.getAttribute("username") %>!</h1>
+            <h3>Your Final Score is: $<%= sesh.getAttribute("score")%></h3>
+            <!-- Redirect Here -->
+            <a href="login_page.jsp">Try Again?</a>
+        </main>
         <!-- fixed scrolling leaderboard here-->
-        
-        <!-- Redirect Here -->
-        <a href="login_page.jsp">Try Again?</a>
         <%
             sesh.invalidate();
         %>

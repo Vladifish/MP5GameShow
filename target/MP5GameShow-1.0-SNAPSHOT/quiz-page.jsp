@@ -34,29 +34,31 @@
         %>
         <% if (sesh != null) {%>
         <a href="loss-page.jsp" id="give-up-button">Give Up</a>
-        <section id="question-section"> 
-            <h1>Question #<%= level%></h1>
-            <h3><%= username%>, <%= question[0][0]%></h3>
-            <h3>$<%= score%></h3>
-        </section>
-        
-        <section id="answer-section">
-            <form class="quiz-form" action="/MP5GameShow/QuizServlet" method="post">
-            <input type="radio" id="radioA" name="answer" value="A" required>
-            <label for="radioA"><%= question[1][0] %></label>
-            
-            <input type="radio" id="radioB" name="answer" value="B">
-            <label for="radioB"><%= question[1][1] %></label>
-            
-            <input type="radio" id="radioC" name="answer" value="C">
-            <label for="radioC"><%= question[1][2] %></label>
-            
-            <input type="radio" id="radioD" name="answer" value="D">
-            <label for="radioD"><%= question[1][3] %></label>
-            
-            <input type="submit">
-        </form>
-        </section>
+        <main>
+            <section id="question-section"> 
+                <h1>Question #<%= level%></h1>
+                <h3><%= username%>, <%= question[0][0]%></h3>
+                <h3>$<%= score%></h3>
+            </section>
+
+            <section id="answer-section">
+                <form class="quiz-form" action="/MP5GameShow/QuizServlet" method="post">
+                <input type="radio" id="radioA" name="answer" value="A" required>
+                <label for="radioA"><%= question[1][0] %></label>
+
+                <input type="radio" id="radioB" name="answer" value="B">
+                <label for="radioB"><%= question[1][1] %></label>
+
+                <input type="radio" id="radioC" name="answer" value="C">
+                <label for="radioC"><%= question[1][2] %></label>
+
+                <input type="radio" id="radioD" name="answer" value="D">
+                <label for="radioD"><%= question[1][3] %></label>
+
+                <input type="submit">
+            </form>
+            </section>
+        </main>
         <%} %>
         
     </body>

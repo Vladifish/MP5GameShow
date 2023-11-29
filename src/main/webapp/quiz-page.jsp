@@ -33,8 +33,9 @@
             String score = (String)sesh.getAttribute("score");
         %>
         <% if (sesh != null) {%>
-        <a href="loss-page.jsp" id="give-up-button">Give Up</a>
+        
         <main>
+            <a href="loss-page.jsp" id="give-up-button">Give Up</a>
             <section id="question-section"> 
                 <h1>Question #<%= level%></h1>
                 <h3><%= username%>, <%= question[0][0]%></h3>

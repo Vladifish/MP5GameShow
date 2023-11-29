@@ -159,7 +159,7 @@ public class QuizServlet extends HttpServlet {
                 break;
             case "Bonus":
                 score = BASE_SCORE.ULTRA_HARD.get();
-                break; // not needed just adding this for consistency
+                break; // break is not needed just adding this for consistency
         }
         
         double mult = 1;

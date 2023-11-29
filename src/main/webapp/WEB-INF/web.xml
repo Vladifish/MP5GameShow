@@ -11,6 +11,10 @@
         <servlet-name>QuizServlet</servlet-name>
         <servlet-class>QuizServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VictoryServlet</servlet-name>
+        <servlet-class>VictoryServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -21,13 +25,16 @@
     </servlet-mapping>
     <error-page>
         <error-code>400</error-code>
-       <location>/login-error.jsp</location>
+        <location>/login-error.jsp</location>
     </error-page>
-    
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
-       <location>/genericerror.jsp</location>
+        <location>/genericerror.jsp</location>
     </error-page>
+    <servlet-mapping>
+        <servlet-name>VictoryServlet</servlet-name>
+        <url-pattern>/VictoryServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

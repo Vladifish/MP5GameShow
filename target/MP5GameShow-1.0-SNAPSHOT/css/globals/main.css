@@ -53,6 +53,7 @@ input[type="text"], input[type="submit"] {
     font-family: "Trebuchet MS", sans-serif;
     background-color: white;
     border: 1px solid gray;
+    user-select: none;
 }
 
 input[type="submit"]:hover {

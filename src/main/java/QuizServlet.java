@@ -17,6 +17,8 @@ import javax.servlet.http.HttpSession;
  */
 public class QuizServlet extends HttpServlet {
 
+    private final int TIME_LIMIT = 30;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -69,7 +71,7 @@ public class QuizServlet extends HttpServlet {
     // https://coderanch.com/t/282680/java/create-timer-jsp
     private void setTimer(HttpSession session) {
         long now = System.currentTimeMillis();
-        long allotedTime = now + 120 * 1000;
+        long allotedTime = now + TIME_LIMIT * 1000;
         session.setAttribute("start-time", now + ""); // casting to a string, since it's easier to work with it
         session.setAttribute("end-by-time", allotedTime + "");
     }
@@ -165,7 +167,7 @@ public class QuizServlet extends HttpServlet {
         double time_diff = (deadline - time_end);
         // test variables
         if (time_diff > 0) {
-            mult += (time_diff / 120_000);
+            mult += (time_diff / (TIME_LIMIT * 1000));
         }
 
         score *= mult;
@@ -195,7 +197,7 @@ public class QuizServlet extends HttpServlet {
                     { "Alabang", "Marinduque", "Sa Puso Mo", "Earth" } },
             { { "What does the second 'C' in the acronym \"CICS\" stand for", "C", "Ez" },
                     { "College", "Competitive", "Computer", "Collectivism" } },
-            { { "Who is the Patron Saint of UST 10 years ago?", "B", "Ez" },
+            { { "Who was the Patron Saint of UST 10 years ago?", "B", "Ez" },
                     { "St. Francis of Assisi", "St. Thomas Aquinas", "St. Vincent Ferrer", "St. Pedro Calungsod" } },
             { { "What is the Course Code of the Course 'Social Media Dynamics'?", "B", "Ez" },
                     { "ELE-SMT", "ELE-SMD", "ELE-ES", "ICS-SMD" } },

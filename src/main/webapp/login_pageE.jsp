@@ -19,6 +19,7 @@
                 <label for="username">Enter a Username: </label><input type="text" name="username" placeholder="username" required/>
                 <input type="submit">
             </form>
+            <p class="username-error">Username must have at most 10 characters</p>
         </main>
         <%
             HttpSession sesh = request.getSession(false);

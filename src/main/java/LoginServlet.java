@@ -39,6 +39,10 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
+        if (username.length() > 10) {
+            request.getRequestDispatcher("/login_pageE.jsp").forward(request, response);
+        }
+
         // ---------
         String redirectURL;
         HttpSession userSession = request.getSession();
@@ -48,8 +52,6 @@ public class LoginServlet extends HttpServlet {
         if (username.equals(ADMIN)) {
             redirectURL = "/victory_page.jsp";
             userSession.setAttribute("level", "99");
-        } else if (username.length() > 10) {
-            redirectURL = "/login_pageE.jsp";
         } else {
             redirectURL = "/QuizServlet"; // redirect to servlet to generate question bank
         }

@@ -13,13 +13,6 @@
         <title>Who Wants to Be?</title>
     </head>
     <body>
-        <main>
-            <h1>Who wants to be?</h1>
-            <form action="/MP5GameShow/LoginServlet" method="post">
-                <label for="username">Enter a Username: </label><input type="text" name="username" placeholder="username" required/>
-                <input type="submit">
-            </form>
-        </main>
         <%
             HttpSession sesh = request.getSession(false);
             if(sesh != null) {
@@ -30,5 +23,13 @@
                 }
             }  
         %>
+        <main>
+            <h1>Who wants to be?</h1>
+            <form action="/MP5GameShow/LoginServlet" method="post">
+                <label for="username">Enter a Username: </label><input type="text" name="username" placeholder="username" required/>
+                <input type="submit">
+            </form>
+        </main>
+        
     </body>
 </html>

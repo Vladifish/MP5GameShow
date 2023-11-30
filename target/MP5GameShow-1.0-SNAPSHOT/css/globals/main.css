@@ -50,10 +50,6 @@ input[type="text"], input[type="submit"] {
     border: 1px solid gray;
 }
 
-input[type="submit"] {
-    text-decoration: underline;
-}
-
 input[type="submit"]:hover {
     text-shadow: 2px black;
     border-color: black;
@@ -67,6 +63,7 @@ a {
     border: 1px solid gray;
     padding: 0.25rem;
     color: lightgrey;
+    text-decoration: none;
 }
 
 a:visited {

@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/quiz_page.css">
         <link rel="stylesheet" href="css/globals/main.css">
-        <title>Who Wants to Be?</title>
+        <title>Who Wants to?</title>
     </head>
     <body>
         <% 

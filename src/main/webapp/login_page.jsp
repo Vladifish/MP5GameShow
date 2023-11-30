@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/globals/main.css">
-        <title>Who Wants to Be?</title>
+        <title>Who Wants to?</title>
     </head>
     <body>
         <%
@@ -24,7 +24,7 @@
             }  
         %>
         <main>
-            <h1>Who wants to be?</h1>
+            <h1>Who wants to?</h1>
             <form action="/MP5GameShow/LoginServlet" method="post">
                 <label for="username">Enter a Username: </label><input type="text" name="username" placeholder="username" required/>
                 <input type="submit">

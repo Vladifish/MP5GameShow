@@ -56,7 +56,7 @@
                     <input type="radio" id="radioD" name="answer" value="D">
                     <label for="radioD"><%= question[1][3] %></label>
                 </div>
-            <input type="submit">
+            <input type="submit" value="Final Answer">
         </form>
         </main>
         <%} %>

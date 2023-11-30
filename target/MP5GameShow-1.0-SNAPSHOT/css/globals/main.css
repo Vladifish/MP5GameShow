@@ -9,9 +9,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 body {
     margin: 0;
-    padding: 5vh 5vw;
+    padding: 0 5vw;
     background-color: lightgrey;
     width: 90vw;
+    height: 100vh;
 }
 
 main {
@@ -31,7 +32,7 @@ main {
     --semi-bold: 600;
 }
 
-p, label, input {
+p, input {
     font-size: 1rem;
 }
 

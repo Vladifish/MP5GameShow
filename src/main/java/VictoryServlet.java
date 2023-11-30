@@ -4,7 +4,7 @@
  */
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -69,4 +69,73 @@ public class VictoryServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+}
+
+class Leaderboard {
+    private double min=0;
+    private int length = 0;
+    private Map<String, Player> playerMap = new HashMap<>();
+    private Player[] ranking = new Player[20];
+    
+    void checkInsert(Player p) {
+        int startIndex = length-1;
+        if (playerMap.containsKey(p.name)) {
+            Player old_p = playerMap.get(p.name);
+            
+            if (old_p.score >= p.score)
+                return; // old still beats
+            
+            old_p.score = p.score;
+            startIndex = findIndex(p);
+        } 
+        else {
+            if (p.score <= min) {
+                return; // no point in editing
+            } 
+            
+            // could either override or add new player to ranking
+            if (length < 20)
+                length++;
+            else 
+                playerMap.remove(ranking[length-1].name);
+
+            ranking[length-1] = p;
+            playerMap.put(p.name, p);
+        }
+        sortUp(startIndex);
+        // since we sorted, the last element would 
+        // always have the lowest score
+        min = ranking[length-1].score;
+    }
+    
+    // the insertion part in insertion sort
+    // runs fairly fast, at worst 20 times
+    // we just jog up the array finding things to move
+    private void sortUp(int start) {
+        int i = start;
+        Player key = ranking[i];
+        while (i > 0 && ranking[i-1].score < ranking[i].score) {
+            ranking[i] = ranking[i-1];
+            i--;
+        }
+        ranking[i] = key;
+    }
+    
+    // binary search ;;;;
+    private int findIndex(Player p) {
+        int l = 0;
+        int r = length-1;
+        while (l <= r) {
+            int m = l + (r - 1) / 2;
+            
+            if (ranking[m] == p)
+                return m;
+            
+            if (ranking[m].score < p.score)
+                l = m + 1;
+            else 
+                r = m - 1;
+        }
+        return -1; // should never be reached
+    }
 }

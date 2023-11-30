@@ -31,6 +31,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     align-items: center;
 }
 
+#give-up-button {
+    margin-left: auto;
+}
+
 /* radio button code based from here: https://markheath.net/post/customize-radio-button-css*/
 
 .quiz-form input[type="radio"] {

@@ -9,7 +9,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 body {
     margin: 0;
-    padding: 0;
+    padding: 5vh 5vw;
+    background-color: lightgrey;
+    width: 90vw;
 }
 
 main {
@@ -19,7 +21,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: lightgray;
+    
 }
 
 :root {
@@ -42,11 +44,33 @@ h3 {
 }
 
 input[type="text"], input[type="submit"] {
-    border: 1px lightgrey solid;
+    font-family: "Trebuchet MS", sans-serif;
+    background-color: white;
+    border: 1px solid gray;
+    text-decoration: underline;
 }
 
 input[type="submit"]:hover {
-    background-color: grey;
-    transition-delay: .05s;
     text-shadow: 2px black;
+    border-color: black;
+    color: blue;
+    cursor: pointer;
+}
+
+/* Link Effects */
+a {
+    background-color: white;
+    border: 1px solid gray;
+    padding: 0.25rem;
+    color: lightgrey;
+}
+
+a:visited {
+    color: inherit;
+}
+
+a:hover {
+    text-shadow: 2px black;
+    border-color: black;
+    color: blue;
 }

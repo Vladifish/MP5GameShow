@@ -43,7 +43,6 @@
             </section>
 
             <form class="quiz-form" action="/MP5GameShow/QuizServlet" method="post">
-                <div class="form-questions">
                     <input type="radio" id="radioA" name="answer" value="A" required>
                     <label for="radioA"><%= question[1][0] %></label>
 
@@ -55,7 +54,6 @@
 
                     <input type="radio" id="radioD" name="answer" value="D">
                     <label for="radioD"><%= question[1][3] %></label>
-                </div>
             <input type="submit" value="Final Answer">
         </form>
         </main>

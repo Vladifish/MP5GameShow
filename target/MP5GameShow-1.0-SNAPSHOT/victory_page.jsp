@@ -37,7 +37,7 @@
         </main>
             
             <ol type="1">
-                <%for(int i=ranking.length-1; i>=0; i--){ 
+                <%for(int i=0; i<ranking.length; i++){ 
                     Player p = ranking[i];
                 %>
                     <li><p><%=p.name%></p> <p>$<%=p.score%></p></li>

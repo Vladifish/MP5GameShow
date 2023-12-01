@@ -113,7 +113,7 @@ public class VictoryServlet extends HttpServlet {
         }
 
         void checkInsert(Player p) {
-            int startIndex = Math.max(length - 1, 0);
+            int startIndex;
             if (playerMap.containsKey(p.name)) {
                 Player old_p = playerMap.get(p.name);
 
@@ -123,20 +123,26 @@ public class VictoryServlet extends HttpServlet {
                 old_p.score = p.score;
                 startIndex = findIndex(p);
             } else {
-                if (p.score <= min) {
-                    return; // no point in editing
-                }
-
-                // could either override or add new player to ranking
-                if (length < 20)
+                // check if new player fits in ranking
+                if (length < 20) {
                     length++;
-                else
+                    
+                // not fit for leaderboard
+                } else if (p.score <= min) {
+                    return; // no point in editing
+                
+                // it's better than last player so we good
+                } else {
                     playerMap.remove(ranking[length - 1].name);
+                }
+                    
 
                 ranking[length - 1] = p;
                 playerMap.put(p.name, p);
+                startIndex = length - 1;
             }
-            sortUp(startIndex);
+            if (length != 1)
+                sortUp(startIndex);
             // since we sorted, the last element would
             // always have the lowest score
             min = ranking[length - 1].score;
@@ -146,13 +152,13 @@ public class VictoryServlet extends HttpServlet {
         // runs fairly fast, at worst 20 times
         // we just jog up the array finding things to move
         private void sortUp(int start) {
-            int i = start;
-            Player key = ranking[i];
-            while (i > 0 && ranking[i - 1].score < ranking[i].score) {
-                ranking[i] = ranking[i - 1];
+            Player key = ranking[start];
+            int i = start-1;
+            while (i>=0 && ranking[i].score < key.score) {
+                ranking[i+1] = ranking[i];
                 i--;
             }
-            ranking[i] = key;
+            ranking[i+1] = key;
         }
 
         // binary search ;;;;

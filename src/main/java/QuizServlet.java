@@ -56,14 +56,16 @@ public class QuizServlet extends HttpServlet {
         level = (level < 10) ? level + 1 : 99;
         session.setAttribute("level", level + "");
 
-        if (level == 99) {
-            request.getRequestDispatcher("/VictoryServlet").forward(request, response);
+        
+
+        if (level == 99) { // we win those
+            response.sendRedirect(request.getContextPath() + "/LoginServlet");
+            //response.sendRedirect("VictoryServlet");
+        } else {
+            setTimer(session);
+            response.sendRedirect(request.getContextPath() + "/quiz-page.jsp");
         }
-
-        // Set the timer
-        setTimer(session);
-
-        response.sendRedirect(request.getContextPath() + "/quiz-page.jsp");
+        
     }
 
     // Based my timing code on Stefan Evans' answer in

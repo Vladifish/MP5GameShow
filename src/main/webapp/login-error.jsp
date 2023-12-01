@@ -15,5 +15,11 @@
     <body>
         <h1>Error, no username found</h1>
         <a href="login_page.jsp">Go back</a>
+        <% 
+            HttpSession sesh = request.getSession(false);
+            if (sesh != null) {
+                sesh.invalidate();
+            }
+        %>
     </body>
 </html>

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
+import res.Player;
 import java.io.IOException;
 import java.util.*;
 import javax.servlet.ServletException;
@@ -16,58 +17,57 @@ import javax.servlet.http.HttpSession;
  *
  * @author Vlad
  */
-@WebServlet (
-        urlPatterns="/VictoryServlet",
-        name="VictoryServlet"
-)
+@WebServlet(urlPatterns = "/VictoryServlet", name = "VictoryServlet")
 public class VictoryServlet extends HttpServlet {
-
+    private final String ADMIN = "ad_min";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        
+
         if (session == null || session.getAttribute("username") == null) {
-            request.getRequestDispatcher("login-page.jsp").forward(request,response);
+            request.getRequestDispatcher("login-page.jsp").forward(request, response);
         }
-        
+
         // then we work out the leaderboard
-        /*
         Leaderboard leaderboard;
         if (session.getAttribute("leaderboard") == null) {
             leaderboard = new Leaderboard();
             session.setAttribute("leaderboard", leaderboard);
         } else {
-            leaderboard = (Leaderboard)session.getAttribute("leaderboard");
+            leaderboard = (Leaderboard) session.getAttribute("leaderboard");
+            //leaderboard = new Leaderboard();
         }
-        
-        String username = (String)session.getAttribute("username");
+
+        String username = (String) session.getAttribute("username");
         double score = Double.parseDouble((String)session.getAttribute("score"));
-        
+
         Player player = new Player(username, score);
         
-        leaderboard.checkInsert(player);
-        
-        session.setAttribute("ranking", leaderboard.toArray());*/
+        //if (!username.equals(ADMIN))
+            leaderboard.checkInsert(player);
+
+        session.setAttribute("ranking", leaderboard.toArray());
         response.sendRedirect("victory_page.jsp");
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
+    // + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -78,10 +78,10 @@ public class VictoryServlet extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -99,88 +99,86 @@ public class VictoryServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-}
+    class Leaderboard {
+        private double min;
+        private int length;
+        private Map<String, Player> playerMap;
+        private Player[] ranking;
 
-class Leaderboard {
-    private double min;
-    private int length;
-    private Map<String, Player> playerMap;
-    private Player[] ranking;
-    
-    public Leaderboard() {
-        min = 0;
-        length = 0;
-        playerMap = new HashMap<String, Player>();
-        ranking = new Player[20];
-    }
-    
-    void checkInsert(Player p) {
-        int startIndex = length-1;
-        if (playerMap.containsKey(p.name)) {
-            Player old_p = playerMap.get(p.name);
-            
-            if (old_p.score >= p.score)
-                return; // old still beats
-            
-            old_p.score = p.score;
-            startIndex = findIndex(p);
-        } 
-        else {
-            if (p.score <= min) {
-                return; // no point in editing
-            } 
-            
-            // could either override or add new player to ranking
-            if (length < 20)
-                length++;
-            else 
-                playerMap.remove(ranking[length-1].name);
+        public Leaderboard() {
+            min = 0;
+            length = 0;
+            playerMap = new HashMap<>();
+            ranking = new Player[20];
+        }
 
-            ranking[length-1] = p;
-            playerMap.put(p.name, p);
+        void checkInsert(Player p) {
+            int startIndex = Math.max(length - 1, 0);
+            if (playerMap.containsKey(p.name)) {
+                Player old_p = playerMap.get(p.name);
+
+                if (old_p.score >= p.score)
+                    return; // old still beats
+
+                old_p.score = p.score;
+                startIndex = findIndex(p);
+            } else {
+                if (p.score <= min) {
+                    return; // no point in editing
+                }
+
+                // could either override or add new player to ranking
+                if (length < 20)
+                    length++;
+                else
+                    playerMap.remove(ranking[length - 1].name);
+
+                ranking[length - 1] = p;
+                playerMap.put(p.name, p);
+            }
+            sortUp(startIndex);
+            // since we sorted, the last element would
+            // always have the lowest score
+            min = ranking[length - 1].score;
         }
-        sortUp(startIndex);
-        // since we sorted, the last element would 
-        // always have the lowest score
-        min = ranking[length-1].score;
-    }
-    
-    // the insertion part in insertion sort
-    // runs fairly fast, at worst 20 times
-    // we just jog up the array finding things to move
-    private void sortUp(int start) {
-        int i = start;
-        Player key = ranking[i];
-        while (i > 0 && ranking[i-1].score < ranking[i].score) {
-            ranking[i] = ranking[i-1];
-            i--;
+
+        // the insertion part in insertion sort
+        // runs fairly fast, at worst 20 times
+        // we just jog up the array finding things to move
+        private void sortUp(int start) {
+            int i = start;
+            Player key = ranking[i];
+            while (i > 0 && ranking[i - 1].score < ranking[i].score) {
+                ranking[i] = ranking[i - 1];
+                i--;
+            }
+            ranking[i] = key;
         }
-        ranking[i] = key;
-    }
-    
-    // binary search ;;;;
-    private int findIndex(Player p) {
-        int l = 0;
-        int r = length-1;
-        while (l <= r) {
-            int m = l + (r - 1) / 2;
-            
-            if (ranking[m] == p)
-                return m;
-            
-            if (ranking[m].score < p.score)
-                l = m + 1;
-            else 
-                r = m - 1;
+
+        // binary search ;;;;
+        private int findIndex(Player p) {
+            int l = 0;
+            int r = length - 1;
+            while (l <= r) {
+                int m = l + (r - 1) / 2;
+
+                if (ranking[m] == p)
+                    return m;
+
+                if (ranking[m].score < p.score)
+                    l = m + 1;
+                else
+                    r = m - 1;
+            }
+            return 0; // would be zero if the item is yet to be added
         }
-        return -1; // should never be reached
-    }
-    
-    public Player[] toArray() {
-        Player[] out_list = new Player[length];
-        for (int i=0; i<length; i++) {
+
+        public Player[] toArray() {
+            Player[] out_list = new Player[length];
+            for (int i = 0; i < length; i++) {
                 out_list[i] = ranking[i];
+            }
+            return out_list;
         }
-        return out_list;
-    }
+    }// end of leaderboard class
 }

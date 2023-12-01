@@ -59,7 +59,7 @@ public class QuizServlet extends HttpServlet {
         
 
         if (level == 99) { // we win those
-            response.sendRedirect(request.getContextPath() + "/LoginServlet");
+            response.sendRedirect(request.getContextPath() + "/VictoryServlet");
             //response.sendRedirect("VictoryServlet");
         } else {
             setTimer(session);

@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
         userSession.setAttribute("level", "0");
 
         if (username.equals(ADMIN)) {
-            redirectURL = "/victory_page.jsp";
+            redirectURL = "/VictoryServlet";
             userSession.setAttribute("level", "99");
         } else {
             redirectURL = "/QuizServlet"; // redirect to servlet to generate question bank

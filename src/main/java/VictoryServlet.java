@@ -6,6 +6,7 @@
 import java.io.IOException;
 import java.util.*;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author Vlad
  */
+@WebServlet (
+        urlPatterns="/VictoryServlet",
+        name="VictoryServlet"
+)
 public class VictoryServlet extends HttpServlet {
 
     /**
@@ -96,10 +101,17 @@ public class VictoryServlet extends HttpServlet {
 }
 
 class Leaderboard {
-    private double min=0;
-    private int length = 0;
-    private Map<String, Player> playerMap = new HashMap<>();
-    private Player[] ranking = new Player[20];
+    private double min;
+    private int length;
+    private Map<String, Player> playerMap;
+    private Player[] ranking;
+    
+    public Leaderboard() {
+        min = 0;
+        length = 0;
+        playerMap = new HashMap<String, Player>();
+        ranking = new Player[20];
+    }
     
     void checkInsert(Player p) {
         int startIndex = length-1;

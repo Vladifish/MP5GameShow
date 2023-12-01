@@ -17,11 +17,13 @@
             HttpSession sesh = request.getSession(false);
             if (sesh == null || sesh.getAttribute("username") == null || 
                 sesh.getAttribute("level") == null) {
-               response.sendRedirect("/redirectpage.jsp");
+               response.sendRedirect(request.getContextPath() + "/redirectpage.jsp");
+               return;
             }
             int level = Integer.parseInt((String)sesh.getAttribute("level"));
             if (level != 99) {
-                response.sendRedirect("/redirectpage.jsp");
+                response.sendRedirect(request.getContextPath() + "/redirectpage.jsp");
+                return;
             }
             
             //Player[] ranking = (Player[])sesh.getAttribute("ranking");

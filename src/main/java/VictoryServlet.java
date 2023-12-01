@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,6 +28,29 @@ public class VictoryServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        
+        if (session == null || session.getAttribute("username") == null) {
+            request.getRequestDispatcher("login-page.jsp").forward(request,response);
+        }
+        
+        // then we work out the leaderboard
+        Leaderboard leaderboard;
+        if (session.getAttribute("leaderboard") == null) {
+            leaderboard = new Leaderboard();
+            session.setAttribute("leaderboard", leaderboard);
+        } else {
+            leaderboard = (Leaderboard)session.getAttribute("leaderboard");
+        }
+        
+        String username = (String)session.getAttribute("username");
+        double score = Double.parseDouble((String)session.getAttribute("score"));
+        
+        Player player = new Player(username, score);
+        
+        leaderboard.checkInsert(player);
+        
+        session.setAttribute("ranking", leaderboard.toArray());
         response.sendRedirect("victory_page.jsp");
     }
 
@@ -137,5 +161,13 @@ class Leaderboard {
                 r = m - 1;
         }
         return -1; // should never be reached
+    }
+    
+    public Player[] toArray() {
+        Player[] out_list = new Player[length];
+        for (int i=0; i<length; i++) {
+                out_list[i] = ranking[i];
+        }
+        return out_list;
     }
 }

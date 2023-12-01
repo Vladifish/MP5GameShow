@@ -17,8 +17,14 @@
         <a href="redirectpage.jsp">Go back</a>
         <% 
             HttpSession sesh = request.getSession(false);
-            if (sesh != null)
-                sesh.invalidate();
+            if (sesh != null) {
+                if (sesh.getAttribute("username") != null) {
+                    sesh.removeAttribute("username");
+                    sesh.removeAttribute("score");
+                    sesh.removeAttribute("level");
+                }
+            }
+                
         %>
     </body>
 </html>

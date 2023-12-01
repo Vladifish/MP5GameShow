@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="res.Player"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,7 +27,7 @@
                 return;
             }
             
-            //Player[] ranking = (Player[])sesh.getAttribute("ranking");
+            Player[] ranking = (Player[])sesh.getAttribute("ranking");
         %>
         <main>
             <h1>Congratulations <%= sesh.getAttribute("username") %>!</h1>
@@ -34,7 +35,7 @@
             <!-- Redirect Here -->
             <a href="login_page.jsp">Try Again?</a>
         </main>
-            <%--
+            
             <ol type="1">
                 <%for(int i=0; i<ranking.length; i++){ 
                     Player p = ranking[i];
@@ -42,8 +43,6 @@
                     <li><p><%=p.name%></p> <p>$<%=p.score%></p></li>
                 <% }%>    
             </ol>
-            --%>
-
         <!-- fixed scrolling leaderboard here-->
         <%
             sesh.removeAttribute("username");

@@ -52,6 +52,7 @@ public class LoginServlet extends HttpServlet {
         if (username.equals(ADMIN)) {
             redirectURL = "/VictoryServlet";
             userSession.setAttribute("level", "99");
+            userSession.setAttribute("score", "20000");
         } else {
             redirectURL = "/QuizServlet"; // redirect to servlet to generate question bank
         }

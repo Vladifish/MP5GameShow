@@ -40,6 +40,7 @@ public class VictoryServlet extends HttpServlet {
         }
         
         // then we work out the leaderboard
+        /*
         Leaderboard leaderboard;
         if (session.getAttribute("leaderboard") == null) {
             leaderboard = new Leaderboard();
@@ -55,7 +56,7 @@ public class VictoryServlet extends HttpServlet {
         
         leaderboard.checkInsert(player);
         
-        session.setAttribute("ranking", leaderboard.toArray());
+        session.setAttribute("ranking", leaderboard.toArray());*/
         response.sendRedirect("victory_page.jsp");
     }
 

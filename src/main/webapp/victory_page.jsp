@@ -17,14 +17,16 @@
             HttpSession sesh = request.getSession(false);
             if (sesh == null || sesh.getAttribute("username") == null || 
                 sesh.getAttribute("level") == null) {
-               response.sendRedirect("/redirectpage.jsp");
+               response.sendRedirect(request.getContextPath() + "/redirectpage.jsp");
+               return;
             }
             int level = Integer.parseInt((String)sesh.getAttribute("level"));
             if (level != 99) {
-                response.sendRedirect("/redirectpage.jsp");
+                response.sendRedirect(request.getContextPath() + "/redirectpage.jsp");
+                return;
             }
             
-            Player[] ranking = (Player[])sesh.getAttribute("ranking");
+            //Player[] ranking = (Player[])sesh.getAttribute("ranking");
         %>
         <main>
             <h1>Congratulations <%= sesh.getAttribute("username") %>!</h1>
@@ -32,6 +34,7 @@
             <!-- Redirect Here -->
             <a href="login_page.jsp">Try Again?</a>
         </main>
+            <%--
             <ol type="1">
                 <%for(int i=0; i<ranking.length; i++){ 
                     Player p = ranking[i];
@@ -39,10 +42,13 @@
                     <li><p><%=p.name%></p> <p>$<%=p.score%></p></li>
                 <% }%>    
             </ol>
+            --%>
 
         <!-- fixed scrolling leaderboard here-->
         <%
-            sesh.invalidate();
+            sesh.removeAttribute("username");
+            sesh.removeAttribute("score");
+            sesh.removeAttribute("level");
         %>
     </body>
 </html>

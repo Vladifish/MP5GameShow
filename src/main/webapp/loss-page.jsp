@@ -19,9 +19,13 @@
             <a href="login_page.jsp">Try Again?</a>
         </main>
         <%
-            HttpSession sesh = request.getSession();
+            HttpSession sesh = request.getSession(false);
             if (sesh != null) {
-                sesh.invalidate();
+                if (sesh.getAttribute("username") != null) {
+                    sesh.removeAttribute("username");
+                    sesh.removeAttribute("score");
+                    sesh.removeAttribute("level");
+                }
             }
         %>
     </body>

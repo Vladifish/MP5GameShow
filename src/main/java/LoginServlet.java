@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
  * @author Vlad
  */
 public class LoginServlet extends HttpServlet {
-    private final String ADMIN = "ad_min";
+    private final String ADMIN = "JohanLibertad";
 
     private boolean checkEmpty(String param) {
         return param == null || param.trim().equals("");
@@ -38,6 +38,18 @@ public class LoginServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST); // this should redirect back to the log-in page
             return;
         }
+        
+        // admin bypass
+        if (username.equals(ADMIN)) {
+            HttpSession adminSession = request.getSession();
+            String redirectURL = "/VictoryServlet";
+            adminSession.setAttribute("username", username);
+            adminSession.setAttribute("level", "99");
+            adminSession.setAttribute("score", "20000");
+            request.getRequestDispatcher(redirectURL).forward(request, response);
+            return;
+        }
+        
 
         if (username.length() > 10) {
             request.getRequestDispatcher("/login_pageE.jsp").forward(request, response);
@@ -46,6 +58,7 @@ public class LoginServlet extends HttpServlet {
         // ---------
         String redirectURL;
         HttpSession userSession = request.getSession();
+
         userSession.setAttribute("username", username);
         userSession.setAttribute("level", "0");
 

@@ -4,7 +4,9 @@
  */
 
 import java.io.IOException;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,39 +40,63 @@ public class LoginServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST); // this should redirect back to the log-in page
             return;
         }
-        
-        // admin bypass
-        if (username.equals(ADMIN)) {
-            HttpSession adminSession = request.getSession();
-            String redirectURL = "/VictoryServlet";
-            adminSession.setAttribute("username", username);
-            adminSession.setAttribute("level", "99");
-            adminSession.setAttribute("score", "20000");
-            request.getRequestDispatcher(redirectURL).forward(request, response);
+
+        HttpSession userSession = retainSession(request, response);
+        if (userSession == null) {
+            // we just restart the servlet to get the cookie again
+            response.sendRedirect(request.getContextPath() + "/LoginServlet");
             return;
         }
-        
+
+        // admin bypass
+        if (username.equals(ADMIN)) {
+            userSession.setAttribute("username", username);
+            userSession.setAttribute("level", "99");
+            userSession.setAttribute("score", "20000");
+
+            // we'd want to redirect since we're handling cookies
+            response.sendRedirect(request.getContextPath() + "/VictoryServlet");
+            // request.getRequestDispatcher("/VictoryServlet").forward(request, response);
+            return;
+        }
 
         if (username.length() > 10) {
             request.getRequestDispatcher("/login_pageE.jsp").forward(request, response);
         }
 
         // ---------
-        String redirectURL;
-        HttpSession userSession = request.getSession();
 
         userSession.setAttribute("username", username);
         userSession.setAttribute("level", "0");
 
-        if (username.equals(ADMIN)) {
-            redirectURL = "/VictoryServlet";
-            userSession.setAttribute("level", "99");
-            userSession.setAttribute("score", "20000");
-        } else {
-            redirectURL = "/QuizServlet"; // redirect to servlet to generate question bank
+        response.sendRedirect(request.getContextPath() + "/QuizServlet");
+        // request.getRequestDispatcher(redirectURL).forward(request, response);
+    }
+
+    private HttpSession retainSession(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        Cookie[] cookies = request.getCookies();
+        Cookie old_session = null;
+
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if (c.getName().equals("session"))
+                    old_session = c;
+            }
         }
 
-        request.getRequestDispatcher(redirectURL).forward(request, response);
+        if (old_session != null) {
+            if (!session.getId().equals(old_session.getValue())) {
+                response.addCookie(new Cookie("JSESSIONID", old_session.getValue()));
+            }
+        } else {
+            old_session = new Cookie("session", session.getId());
+            int LARGEST_INT = 2147483647;
+            old_session.setMaxAge(LARGEST_INT); // largest int value
+            response.addCookie(old_session);
+        }
+
+        return session;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the

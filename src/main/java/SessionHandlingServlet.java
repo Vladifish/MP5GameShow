@@ -4,7 +4,6 @@
  */
 
 import java.io.IOException;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -16,12 +15,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Vlad
  */
-public class LoginServlet extends HttpServlet {
-    private final String ADMIN = "JohanLibertad";
-
-    private boolean checkEmpty(String param) {
-        return param == null || param.trim().equals("");
-    }
+public class SessionHandlingServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,69 +28,38 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-
-        if (checkEmpty(username)) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST); // this should redirect back to the log-in page
-            return;
-        }
-
-        HttpSession userSession = request.getSession(false);
-        if (userSession == null) {
-            // we just restart the servlet to get the cookie again
-            response.sendRedirect(request.getContextPath() + "/sesh");
-            return;
-        }
-
-        // admin bypass
-        if (username.equals(ADMIN)) {
-            userSession.setAttribute("username", username);
-            userSession.setAttribute("level", "99");
-            userSession.setAttribute("score", "20000");
-
-            // we'd want to redirect since we're handling cookies
-            response.sendRedirect(request.getContextPath() + "/VictoryServlet");
-            // request.getRequestDispatcher("/VictoryServlet").forward(request, response);
-            return;
-        }
-
-        if (username.length() > 10) {
-            request.getRequestDispatcher("/login_pageE.jsp").forward(request, response);
-        }
-
-        // ---------
-
-        userSession.setAttribute("username", username);
-        userSession.setAttribute("level", "0");
-
-        response.sendRedirect(request.getContextPath() + "/QuizServlet");
-        // request.getRequestDispatcher(redirectURL).forward(request, response);
-    }
-
-    private HttpSession retainSession(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Cookie[] cookies = request.getCookies();
-        Cookie old_session = null;
+        Cookie prevSession = null;
 
+        // just gets a specific cookie
         if (cookies != null) {
             for (Cookie c : cookies) {
-                if (c.getName().equals("session"))
-                    old_session = c;
+                if (c.getName().equals("session")) {
+                    prevSession = c;
+                }
             }
         }
 
-        if (old_session != null) {
-            if (!session.getId().equals(old_session.getValue())) {
-                response.addCookie(new Cookie("JSESSIONID", old_session.getValue()));
+        if (prevSession != null) {
+            if (!session.getId().equals(prevSession.getValue())) {
+                response.addCookie(new Cookie("JSESSIONID", prevSession.getValue()));
             }
         } else {
-            old_session = new Cookie("session", session.getId());
+            prevSession = new Cookie("session", session.getId());
             int LARGEST_INT = 2147483647;
-            old_session.setMaxAge(LARGEST_INT); // largest int value
-            response.addCookie(old_session);
+            prevSession.setMaxAge(LARGEST_INT); // it would die in a few years
+            response.addCookie(prevSession);
         }
 
-        return session;
+        session.setAttribute("checked", "true");
+        // check if user still has to login
+        // shouldn't throw an error since we make a session eitherway
+        if (session.getAttribute("username") == null || session.getAttribute("level") == null) {
+            response.sendRedirect(request.getContextPath() + "/login_page.jsp");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/quiz-page.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the

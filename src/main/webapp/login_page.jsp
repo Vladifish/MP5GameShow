@@ -14,14 +14,14 @@
     </head>
     <body>
         <%
-            HttpSession sesh = request.getSession(false);
-            if(sesh != null) {
-                Object uncasted_uname = session.getAttribute("username");
-                if (uncasted_uname != null) {
-                    response.sendRedirect(request.getContextPath() + "/quiz-page.jsp");
-                    // Existing Session found restoring progress
-                }
-            }  
+            HttpSession sesh = request.getSession();
+            if (sesh.getAttribute("checked") == null) {
+                response.sendRedirect(request.getContextPath() + "/seshed");
+                return;
+            }
+            if (session.getAttribute("username") != null && session.getAttribute("level") != null) {
+                response.sendRedirect(request.getContextPath() + "/quiz-page.jsp");
+            }   
         %>
         <main>
             <h1>Who wants to?</h1>

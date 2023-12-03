@@ -15,6 +15,10 @@
         <servlet-name>VictoryServlet</servlet-name>
         <servlet-class>VictoryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SessionHandlingServlet</servlet-name>
+        <servlet-class>SessionHandlingServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -35,7 +39,10 @@
         <exception-type>java.lang.Throwable</exception-type>
         <location>/genericerror.jsp</location>
     </error-page>
-    
+    <servlet-mapping>
+        <servlet-name>SessionHandlingServlet</servlet-name>
+        <url-pattern>/seshed</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

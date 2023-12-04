@@ -51,8 +51,6 @@ public class LoginServlet extends HttpServlet {
         // admin bypass
         if (username.equals(ADMIN)) {
             userSession.setAttribute("username", username);
-            userSession.setAttribute("level", "99");
-            userSession.setAttribute("score", "20000");
 
             // we'd want to redirect since we're handling cookies
             response.sendRedirect(request.getContextPath() + "/monster");

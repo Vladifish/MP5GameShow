@@ -15,11 +15,10 @@
     </head>
     <body>
         <% 
-            HttpSession sesh = request.getSession(false);
-            if (sesh == null || sesh.getAttribute("username") == null || 
-                sesh.getAttribute("level") == null) {
-               response.sendRedirect(request.getContextPath() + "/redirectpage.jsp");
-               return;
+            HttpSession sesh = request.getSession();
+            if (sesh.getAttribute("username") == null || sesh.getAttribute("checked") == null) {
+                response.sendRedirect(request.getContextPath() + "/seshed");
+                return;
             }
             int level = Integer.parseInt((String)sesh.getAttribute("level"));
             if (level != 99) {

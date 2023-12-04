@@ -16,12 +16,16 @@
     <body>
         <% 
             HttpSession sesh = request.getSession();
-            if (sesh.getAttribute("checked") == null) {
+            if (sesh.getAttribute("username") == null || sesh.getAttribute("checked") == null) {
                 response.sendRedirect(request.getContextPath() + "/seshed");
                 return;
             }
             
             String level = (String)sesh.getAttribute("level");
+            if (Double.parseDouble(level) > 10) {
+                response.sendRedirect(request.getContextPath() + "/victory_page.jsp");
+                return;
+            }
             String[][] question = (String[][])sesh.getAttribute("current-question");
             String username = (String)sesh.getAttribute("username");
             String score = (String)sesh.getAttribute("score");

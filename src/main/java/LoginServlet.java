@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
             userSession.setAttribute("score", "20000");
 
             // we'd want to redirect since we're handling cookies
-            response.sendRedirect(request.getContextPath() + "/VictoryServlet");
+            response.sendRedirect(request.getContextPath() + "/monster");
             // request.getRequestDispatcher("/VictoryServlet").forward(request, response);
             return;
         }

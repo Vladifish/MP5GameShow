@@ -53,8 +53,7 @@ public class LoginServlet extends HttpServlet {
             userSession.setAttribute("username", username);
 
             // we'd want to redirect since we're handling cookies
-            response.sendRedirect(request.getContextPath() + "/monster");
-            // request.getRequestDispatcher("/VictoryServlet").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/admin-page.jsp");
             return;
         }
 

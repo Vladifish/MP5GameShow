@@ -15,8 +15,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     --semi-bold: 600;
 }
 
-p, input {
+p, input, label {
     font-size: 1rem;
+}
+
+label {
+    font-family: "Trebuchet MS", sans-serif;
 }
 
 h1 {

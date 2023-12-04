@@ -19,6 +19,7 @@
                 response.sendRedirect(request.getContextPath() + "/login_page.jsp");
                 return;
             }
+            Player[] ranking = (Player[])sesh.getAttribute("ranking");
         %>
 
         <main>
@@ -32,10 +33,18 @@
 
             <h3>Delete a player</h3>
             <form action="<%=request.getContextPath()%>/monster" method="POST">
-                <label>Enter username:</label><input type="text">
-                <label>Enter score:</label><input type="number">
+                <label>Enter username: </label><input type="text"><br>
+                <label>Enter score: </label><input type="number"><br>
                 <input type="submit" value="DELETE">
             </form>
+            <ol>
+                <% if (ranking != null){
+                    for (Player p : ranking) {%>
+                        <li><p>p.name</p> <p>p.score</p></li>
+                <%  } 
+                 }%>
+                
+            </ol>
         </main>
     </body>
 </html>

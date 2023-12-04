@@ -15,19 +15,17 @@
     </head>
     <body>
         <% 
-            HttpSession sesh = request.getSession(false);
-            if (sesh == null || sesh.getAttribute("username") == null || 
-                sesh.getAttribute("level") == null) {
-               response.sendRedirect("/MP5GameShow/redirectpage.jsp");
+            HttpSession sesh = request.getSession();
+            if (sesh.getAttribute("username") == null || sesh.getAttribute("checked") == null) {
+                response.sendRedirect(request.getContextPath() + "/seshed");
+                return;
             }
             
             String level = (String)sesh.getAttribute("level");
-            
-            // doesn't quite work
-            if (Integer.parseInt(level) == 99) {
+            if (Double.parseDouble(level) > 10) {
                 response.sendRedirect(request.getContextPath() + "/victory_page.jsp");
+                return;
             }
-            
             String[][] question = (String[][])sesh.getAttribute("current-question");
             String username = (String)sesh.getAttribute("username");
             String score = (String)sesh.getAttribute("score");

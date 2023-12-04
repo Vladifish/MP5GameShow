@@ -13,6 +13,16 @@
         <title>Who Wants to Be?</title>
     </head>
     <body>
+        <%
+            HttpSession sesh = request.getSession();
+            if (sesh.getAttribute("checked") == null) {
+                response.sendRedirect(request.getContextPath() + "/seshed");
+                return;
+            }
+            if (session.getAttribute("username") != null && session.getAttribute("level") != null) {
+                response.sendRedirect(request.getContextPath() + "/quiz-page.jsp");
+            }   
+        %>
         <main>
             <h1>Who wants to?</h1>
             <form action="/MP5GameShow/LoginServlet" method="post">
@@ -21,15 +31,5 @@
             </form>
             <p class="username-error">Username must have at most 10 characters</p>
         </main>
-        <%
-            HttpSession sesh = request.getSession(false);
-            if(sesh != null) {
-                Object uncasted_uname = session.getAttribute("username");
-                if (uncasted_uname != null) {
-                    response.sendRedirect(request.getContextPath() + "/quiz-page.jsp");
-                    // Existing Session found restoring progress
-                }
-            }  
-        %>
     </body>
 </html>

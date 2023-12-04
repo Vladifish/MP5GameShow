@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(urlPatterns = "/VictoryServlet", name = "VictoryServlet")
 public class VictoryServlet extends HttpServlet {
-    private final String ADMIN = "ad_min";
+    private final String ADMIN = "JohanLibertad";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -56,7 +56,7 @@ public class VictoryServlet extends HttpServlet {
             leaderboard.checkInsert(player);
 
         session.setAttribute("ranking", leaderboard.toArray());
-        response.sendRedirect("victory_page.jsp");
+        response.sendRedirect(request.getContextPath() + "/victory_page.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the

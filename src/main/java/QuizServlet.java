@@ -32,11 +32,12 @@ public class QuizServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if (session == null || session.getAttribute("level") == null)
+        if (session == null || session.getAttribute("level") == null) {
             request.getRequestDispatcher("login_page.jsp").forward(request, response);
-
+            return;
+        }
+        
         int level = Integer.parseInt((String) session.getAttribute("level"));
-
         // Different first-run
         if (level == 0) {
             session.setAttribute("question-queue", CreateQuestionQueue());

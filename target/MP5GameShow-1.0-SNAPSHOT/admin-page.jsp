@@ -19,32 +19,30 @@
                 response.sendRedirect(request.getContextPath() + "/login_page.jsp");
                 return;
             }
-            Player[] ranking = (Player[])sesh.getAttribute("ranking");
+            Player[] ranking = (Player[])session.getAttribute("ranking");
         %>
 
         <main>
+            <a href="redirectpage.jsp">Go back</a>
             <h1>Hello Johan!</h1>
 
-            <h3>Add a player</h3>
+            <h3>Add/Delete a player</h3>
             <form action="<%=request.getContextPath()%>/monster" method="POST">
-                <label>Enter username:</label><input type="text">
-                <input type="submit" value="ADD">
+                <label>Enter username:</label><input type="text" name="username" required>
+                <label>Enter score: </label><input type="number" name="score"><br>
+                <input type="submit" name="add_player" value="ADD">
+                <input type="submit" name="delete_player" value="DELETE">
             </form>
-
-            <h3>Delete a player</h3>
-            <form action="<%=request.getContextPath()%>/monster" method="POST">
-                <label>Enter username: </label><input type="text"><br>
-                <label>Enter score: </label><input type="number"><br>
-                <input type="submit" value="DELETE">
-            </form>
+                
+            <h3>Leaderboard</h3>
             <ol>
                 <% if (ranking != null){
                     for (Player p : ranking) {%>
-                        <li><p>p.name</p> <p>p.score</p></li>
+                        <li><p><%=p.name%></p> <p><%=p.score%></p></li>
                 <%  } 
                  }%>
-                
             </ol>
+            <% %>
         </main>
     </body>
 </html>

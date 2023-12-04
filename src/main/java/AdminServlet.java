@@ -4,12 +4,12 @@
  */
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import res.*;
 
 /**
  *
@@ -21,30 +21,67 @@ public class AdminServlet extends HttpServlet {
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if (session.getAttribute("username") == null || !((String)session.getAttribute("username")).equals("JohanLibertad")) {
+        if (session.getAttribute("username") == null
+                || !((String) session.getAttribute("username")).equals("JohanLibertad")) {
             response.sendRedirect(request.getContextPath() + "/login_page.jsp");
             return;
         }
-        
-        
+
+        if (request.getParameter("add_player") != null) {
+            String username = request.getParameter("username");
+            String score = request.getParameter("score");
+            
+            if (score != null) {
+                double d_score = Double.parseDouble(score);
+                double trimmedScore = Double.parseDouble(String.format("%.2f", d_score));
+                addToLeaderboard(session, new Player(username, trimmedScore));
+            }
+        } else {
+            String username = request.getParameter("username");
+            deleteFromLeaderboard(session, username);
+        }
+
+        Leaderboard leaderboard = (Leaderboard) session.getAttribute("leaderboard");
+        if (leaderboard != null)
+            session.setAttribute("ranking", leaderboard.toArray());
+
+        response.sendRedirect(request.getContextPath() + "/admin-page.jsp");
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    private static void addToLeaderboard(HttpSession session, Player p) {
+        Leaderboard leaderboard = (Leaderboard) session.getAttribute("leaderboard");
+        if (leaderboard == null) {
+            leaderboard = new Leaderboard();
+            session.setAttribute("leaderboard", leaderboard);
+        }
+        leaderboard.checkInsert(p);
+    }
+
+    private static void deleteFromLeaderboard(HttpSession session, String name) {
+        Leaderboard leaderboard = (Leaderboard) session.getAttribute("leaderboard");
+        if (leaderboard != null) {
+            leaderboard.deletePlayer(name);
+        }
+
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
+    // + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -55,10 +92,10 @@ public class AdminServlet extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

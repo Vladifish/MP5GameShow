@@ -20,6 +20,12 @@
             
             }
                 response.sendRedirect(request.getContextPath() + "/login_page.jsp");
+            session = request.getSession();
+
+            // extra cleaning up
+            if (session.getAttribute("username") != null) {
+                session.removeAttribute("username");
+            }
         %>
     </body>
 </html>

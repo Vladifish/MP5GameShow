@@ -74,14 +74,18 @@ public class Leaderboard {
             
             // deletes a player starting from the top of the array
             int i = ranking.length-1;
+            Player temp = ranking[i];
             while (i > 0) {
-                Player temp = ranking[i-1];
                 if (!ranking[i-1].name.equals(name)) {
-                    ranking[i-1] = ranking[i];
+                    ranking[i-1] = temp;
+                    temp = ranking[i-1];
+                } else {
+                    break;
                 }
+                
                 i--;
             }
-            
+            length--;
             playerMap.remove(name);
             return true;
         }

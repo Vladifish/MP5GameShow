@@ -47,6 +47,7 @@
             sesh.removeAttribute("username");
             sesh.removeAttribute("score");
             sesh.removeAttribute("level");
+            sesh.removeAttribute("checked");
         %>
     </body>
 </html>

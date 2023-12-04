@@ -33,8 +33,9 @@ public class VictoryServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if (session == null || session.getAttribute("username") == null) {
-            request.getRequestDispatcher("login-page.jsp").forward(request, response);
+        if (session == null || session.getAttribute("level") == null) {
+            response.sendRedirect(request.getContextPath() + "/seshed");
+            return;
         }
 
         // then we work out the leaderboard

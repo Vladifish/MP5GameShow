@@ -33,7 +33,7 @@ public class QuizServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
 
         if (session == null || session.getAttribute("level") == null) {
-            request.getRequestDispatcher("login_page.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/seshed");
             return;
         }
         

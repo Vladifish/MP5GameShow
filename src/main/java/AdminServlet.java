@@ -28,7 +28,13 @@ public class AdminServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
+
+        if (session == null) {
+            response.sendRedirect(request.getContextPath() + "/seshed");
+            return;
+        }
+
         if (session.getAttribute("username") == null
                 || !((String) session.getAttribute("username")).equals("JohanLibertad")) {
             response.sendRedirect(request.getContextPath() + "/login_page.jsp");
@@ -38,7 +44,7 @@ public class AdminServlet extends HttpServlet {
         if (request.getParameter("add_player") != null) {
             String username = request.getParameter("username");
             String score = request.getParameter("score");
-            
+
             if (score != null) {
                 double d_score = Double.parseDouble(score);
                 double trimmedScore = Double.parseDouble(String.format("%.2f", d_score));

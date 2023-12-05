@@ -29,37 +29,13 @@ public class SessionHandlingServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Cookie[] cookies = request.getCookies();
-        Cookie prevSession = null;
 
-        // just gets a specific cookie
-        if (cookies != null) {
-            for (Cookie c : cookies) {
-                if (c.getName().equals("session")) {
-                    prevSession = c;
-                }
-            }
-        }
+        Cookie seshCookie = new Cookie("JSESSIONID", session.getId());
+        seshCookie.setMaxAge(Integer.MAX_VALUE);
+        response.addCookie(seshCookie);
 
-        if (prevSession != null) {
-            if (!session.getId().equals(prevSession.getValue())) {
-                response.addCookie(new Cookie("JSESSIONID", prevSession.getValue()));
-            }
-        } else {
-            prevSession = new Cookie("session", session.getId());
-            int LARGEST_INT = 2147483647;
-            prevSession.setMaxAge(LARGEST_INT); // it would die in a few years
-            response.addCookie(prevSession);
-        }
-
-        session.setAttribute("checked", "true");
-        // check if user still has to login
-        // shouldn't throw an error since we make a session eitherway
-        if (session.getAttribute("username") == null || session.getAttribute("level") == null) {
-            response.sendRedirect(request.getContextPath() + "/login_page.jsp");
-        } else {
-            response.sendRedirect(request.getContextPath() + "/quiz-page.jsp");
-        }
+        // default redirect since the login should redirect properly anyways
+        response.sendRedirect(request.getContextPath() + "/login_page.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the

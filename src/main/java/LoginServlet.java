@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession userSession = request.getSession(false);
         if (userSession == null) {
             // we just restart the servlet to get the cookie again
-            response.sendRedirect(request.getContextPath() + "/sesh");
+            response.sendRedirect(request.getContextPath() + "/seshed");
             return;
         }
 

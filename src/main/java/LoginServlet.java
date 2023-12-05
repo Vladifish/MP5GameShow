@@ -70,32 +70,6 @@ public class LoginServlet extends HttpServlet {
         // request.getRequestDispatcher(redirectURL).forward(request, response);
     }
 
-    private HttpSession retainSession(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession();
-        Cookie[] cookies = request.getCookies();
-        Cookie old_session = null;
-
-        if (cookies != null) {
-            for (Cookie c : cookies) {
-                if (c.getName().equals("session"))
-                    old_session = c;
-            }
-        }
-
-        if (old_session != null) {
-            if (!session.getId().equals(old_session.getValue())) {
-                response.addCookie(new Cookie("JSESSIONID", old_session.getValue()));
-            }
-        } else {
-            old_session = new Cookie("session", session.getId());
-            int LARGEST_INT = 2147483647;
-            old_session.setMaxAge(LARGEST_INT); // largest int value
-            response.addCookie(old_session);
-        }
-
-        return session;
-    }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
     // + sign on the left to edit the code.">
     /**

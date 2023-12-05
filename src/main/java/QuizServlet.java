@@ -186,7 +186,7 @@ public class QuizServlet extends HttpServlet {
         }
 
         String[][][] QuestionBank = {
-
+                        // THE QUESTIONS ARE SO BAD I'M SO SORRY
                         // Easy Questions
                         { { "What is the Powerhouse of the Cell?", "A", "Ez" },
                                         { "Mitochondria", "ATP", "JSP", "Ribosomes" } },
@@ -210,7 +210,7 @@ public class QuizServlet extends HttpServlet {
                         { { "What is the currency of the Phillipines?", "D", "Ez" },
                                         { "Dollar", "Yen", "Piso", "Peso" } },
 
-                        // Medium Questions
+                        // Medium Questions, random as hew
 
                         { { "When did Facebook first launch?", "C", "Med" },
                                         { "2003", "2002", "2004", "2001" } },
@@ -222,7 +222,7 @@ public class QuizServlet extends HttpServlet {
                                         { "Stalin", "Churchill", "Fegelein", "Fuhrer" } },
                         { { "What is the smallest Country in the World?", "A", "Med" },
                                         { "Vatican City", "Maldives", "Philippines", "Japan" } },
-                        { { "Who is the number one streamed artist on Spotify (Last Checked: 12/05/2023)?", "B",
+                        { { "Who is the number one streamed artist on Spotify (Last Checked: 12/05/2023)?", "A",
                                         "Med" },
                                         { "Taylor Swift", "The Weeknd", "Drake", "Laufey" } },
                         { { "What is the translation of \"Hippopotamus\"?", "B", "Med" },
@@ -234,25 +234,28 @@ public class QuizServlet extends HttpServlet {
                         { { "Which country borders 14 nations and crosses 8 time zones?", "A", "Med" },
                                         { "Russia", "China", "India", "USA" } },
 
-                        // Hard Questions
+                        // Hard Questions / Des Algo Review lol
                         { { "What is the average runtime of Stalin Sort?", "A", "Hard" },
                                         { "O(n)", "O(n log n)", "O(n lg n)", "O(n^2)" } },
                         { { "What is the best case of bogo-sort?", "B", "Hard" },
                                         { "O(n)", "O(1)", "O(n lg n)", "O(n^2)" } },
                         { { "Maximum Bipartite Matching uses which algorithm?", "D", "Hard" },
                                         { "Soul Searching", "Dynamic Programming", "Sorting", "Ford-Fulkerson" } },
-                        { { "hard3Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Hard" },
-                                        { "Blue", "White", "Red", "Orange" } },
-                        { { "hard4Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Hard" },
-                                        { "Blue", "White", "Red", "Orange" } },
-                        { { "hard5Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Hard" },
-                                        { "Blue", "White", "Red", "Orange" } },
-                        { { "hard6Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Hard" },
-                                        { "Blue", "White", "Red", "Orange" } },
-                        { { "hard7Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Hard" },
-                                        { "Blue", "White", "Red", "Orange" } },
-                        { { "hard8Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Hard" },
-                                        { "Blue", "White", "Red", "Orange" } },
+                        { { "What can we use to check if a problem is in NP?", "B", "Hard" },
+                                        { "Testing", "Certificate", "Medal", "Solution" } },
+                        { { "What problem can be solved with both DP and Branch-and-Bound?", "C",
+                                        "Hard" },
+                                        { "Ham Circuit", "Clique Problem", "0/1 Knapsack", "MCM" } },
+                        { { "Why is the Bellman Ford algorithm more powerful than Djikstra's?", "A", "Hard" },
+                                        { "Negative Edges", "Faster Runtime", "The statement is false",
+                                                        "Less Comparisons" } },
+                        { { "In a Flow problem, what node has no outgoing edges?", "D", "Hard" },
+                                        { "Inner Node", "Source", "Leaf", "Sink" } },
+                        { { "What approach does the Jarvis March algorithm use?", "C", "Hard" },
+                                        { "Left/Right Marching", "Greedy", "Giftwrapping", "Dynamic Programming" } },
+                        { { "Who won the Turing Award in 2022?", "A", "Hard" },
+                                        { "Robert Metcalfe", "Cecil Delfinado", "Jack Dongarra",
+                                                        "Lance Gulinao" } }, // lol
 
                         // Ultra Hard Question
                         { { "Anong kulay ng t-shirt ng 2csa ng tinawag sila sa dean's office?", "B", "Bonus" },

@@ -15,14 +15,20 @@
     </head>
     <body>
         <% 
-            HttpSession sesh = request.getSession();
-            if (sesh.getAttribute("username") == null || sesh.getAttribute("checked") == null) {
+            HttpSession sesh = request.getSession(false);
+
+            if (session == null || session.getAttribute("checked") == null) {
                 response.sendRedirect(request.getContextPath() + "/seshed");
+                return;
+            }
+
+            if (sesh.getAttribute("username") == null || sesh.getAttribute("checked") == null) {
+                response.sendRedirect(request.getContextPath() + "/login_page.jsp");
                 return;
             }
             int level = Integer.parseInt((String)sesh.getAttribute("level"));
             if (level != 99) {
-                response.sendRedirect(request.getContextPath() + "/redirectpage.jsp");
+                response.sendRedirect(request.getContextPath() + "/login_page.jsp");
                 return;
             }
             
@@ -47,6 +53,7 @@
             sesh.removeAttribute("username");
             sesh.removeAttribute("score");
             sesh.removeAttribute("level");
+            sesh.removeAttribute("checked");
         %>
     </body>
 </html>

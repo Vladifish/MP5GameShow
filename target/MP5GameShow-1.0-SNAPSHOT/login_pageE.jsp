@@ -14,8 +14,7 @@
     </head>
     <body>
         <%
-            HttpSession sesh = request.getSession();
-            if (sesh.getAttribute("checked") == null) {
+            if (session == null || session.getAttribute("checked") == null) {
                 response.sendRedirect(request.getContextPath() + "/seshed");
                 return;
             }

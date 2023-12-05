@@ -19,7 +19,12 @@
             while (System.currentTimeMillis()- start < 1500 ) {
             
             }
-                response.sendRedirect(request.getContextPath() + "/login_page.jsp");
+            session = request.getSession(false);
+            // extra cleaning up
+            if (session != null || session.getAttribute("username") != null) {
+                session.removeAttribute("username");
+            }
+            response.sendRedirect(request.getContextPath() + "/login_page.jsp");
         %>
     </body>
 </html>

@@ -5,7 +5,6 @@
 
 import java.io.IOException;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,9 +15,8 @@ import res.*;
  *
  * @author Vlad
  */
-@WebServlet(urlPatterns = "/VictoryServlet", name = "VictoryServlet")
-public class VictoryServlet extends HttpServlet {
-    private final String ADMIN = "JohanLibertad";
+public class AdminServlet extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,30 +30,62 @@ public class VictoryServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if (session == null || session.getAttribute("level") == null) {
+        if (session == null) {
             response.sendRedirect(request.getContextPath() + "/seshed");
             return;
         }
 
-        // then we work out the leaderboard
-        Leaderboard leaderboard;
-        if (session.getAttribute("leaderboard") == null) {
-            leaderboard = new Leaderboard();
-            session.setAttribute("leaderboard", leaderboard);
-        } else {
-            leaderboard = (Leaderboard) session.getAttribute("leaderboard");
-            //leaderboard = new Leaderboard();
+        if (session.getAttribute("username") == null
+                || !((String) session.getAttribute("username")).equals("JohanLibertad")) {
+            response.sendRedirect(request.getContextPath() + "/login_page.jsp");
+            return;
         }
 
-        String username = (String) session.getAttribute("username");
-        double score = Double.parseDouble((String)session.getAttribute("score"));
+        if (request.getParameter("add_player") != null) {
+            String username = request.getParameter("username");
+            String score = request.getParameter("score");
+            int x = 2;
+            if (score != null && !score.trim().equals("")) {
+                double d_score = Double.parseDouble(score);
+                double trimmedScore = Double.parseDouble(String.format("%.2f", d_score));
+                addToLeaderboard(session, new Player(username, trimmedScore));
+                session.setAttribute("player-add-check", "");
+            } else {
+                session.setAttribute("player-add-check", "Please Enter Score");
+                response.sendRedirect(request.getContextPath() + "/admin-page.jsp");
+                return;
+            }
+        } else if (request.getParameter("delete_player") != null) {
+            String username = request.getParameter("username");
+            deleteFromLeaderboard(session, username);
+        } else if (request.getParameter("explode_session") != null) {
+            session.invalidate();
+            response.sendRedirect(request.getContextPath() + "/login_page.jsp");
+            return;
+        }
 
-        Player player = new Player(username, score);
-        
-        leaderboard.checkInsert(player);
+        Leaderboard leaderboard = (Leaderboard) session.getAttribute("leaderboard");
+        if (leaderboard != null)
+            session.setAttribute("ranking", leaderboard.toArray());
 
-        session.setAttribute("ranking", leaderboard.toArray());
-        response.sendRedirect(request.getContextPath() + "/victory_page.jsp");
+        response.sendRedirect(request.getContextPath() + "/admin-page.jsp");
+    }
+
+    private static void addToLeaderboard(HttpSession session, Player p) {
+        Leaderboard leaderboard = (Leaderboard) session.getAttribute("leaderboard");
+        if (leaderboard == null) {
+            leaderboard = new Leaderboard();
+            session.setAttribute("leaderboard", leaderboard);
+        }
+        leaderboard.checkInsert(p);
+    }
+
+    private static void deleteFromLeaderboard(HttpSession session, String name) {
+        Leaderboard leaderboard = (Leaderboard) session.getAttribute("leaderboard");
+        if (leaderboard != null) {
+            leaderboard.deletePlayer(name);
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the

@@ -18,8 +18,13 @@
         <% 
             HttpSession sesh = request.getSession(false);
             if (sesh != null) {
+                
+                // separated this since the admin page also has a username
                 if (sesh.getAttribute("username") != null) {
                     sesh.removeAttribute("username");
+                }
+                
+                if (sesh.getAttribute("score") != null) {
                     sesh.removeAttribute("score");
                     sesh.removeAttribute("level");
                 }

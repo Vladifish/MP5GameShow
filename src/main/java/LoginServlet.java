@@ -44,19 +44,16 @@ public class LoginServlet extends HttpServlet {
         HttpSession userSession = request.getSession(false);
         if (userSession == null) {
             // we just restart the servlet to get the cookie again
-            response.sendRedirect(request.getContextPath() + "/sesh");
+            response.sendRedirect(request.getContextPath() + "/seshed");
             return;
         }
 
         // admin bypass
         if (username.equals(ADMIN)) {
             userSession.setAttribute("username", username);
-            userSession.setAttribute("level", "99");
-            userSession.setAttribute("score", "20000");
 
             // we'd want to redirect since we're handling cookies
-            response.sendRedirect(request.getContextPath() + "/VictoryServlet");
-            // request.getRequestDispatcher("/VictoryServlet").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/admin-page.jsp");
             return;
         }
 
@@ -71,32 +68,6 @@ public class LoginServlet extends HttpServlet {
 
         response.sendRedirect(request.getContextPath() + "/QuizServlet");
         // request.getRequestDispatcher(redirectURL).forward(request, response);
-    }
-
-    private HttpSession retainSession(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession();
-        Cookie[] cookies = request.getCookies();
-        Cookie old_session = null;
-
-        if (cookies != null) {
-            for (Cookie c : cookies) {
-                if (c.getName().equals("session"))
-                    old_session = c;
-            }
-        }
-
-        if (old_session != null) {
-            if (!session.getId().equals(old_session.getValue())) {
-                response.addCookie(new Cookie("JSESSIONID", old_session.getValue()));
-            }
-        } else {
-            old_session = new Cookie("session", session.getId());
-            int LARGEST_INT = 2147483647;
-            old_session.setMaxAge(LARGEST_INT); // largest int value
-            response.addCookie(old_session);
-        }
-
-        return session;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the

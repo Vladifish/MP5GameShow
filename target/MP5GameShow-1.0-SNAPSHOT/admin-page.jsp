@@ -37,6 +37,10 @@
                 <input type="submit" name="add_player" value="ADD">
                 <input type="submit" name="delete_player" value="DELETE">
             </form>
+
+            <form action="<%=request.getContextPath()%>/monster" method="POST">
+                <input class="session-delete" type="submit" name="explode_session" value="HARD RESET">
+            </form>
             <% if (session.getAttribute("player-add-check") != null) {%>
             <p class="error-message"><%= session.getAttribute("player-add-check") %></p>
             <% }%>
@@ -44,7 +48,7 @@
             <ol>
                 <% if (ranking != null){
                     for (Player p : ranking) {%>
-                        <li><p><%=p.name%></p> <p><%=p.score%></p></li>
+                        <li><p><%=p.name%></p> <p>$<%=p.score%></p></li>
                 <%  } 
                  }%>
             </ol>

@@ -44,7 +44,7 @@ public class AdminServlet extends HttpServlet {
         if (request.getParameter("add_player") != null) {
             String username = request.getParameter("username");
             String score = request.getParameter("score");
-            int x=2;
+            int x = 2;
             if (score != null && !score.trim().equals("")) {
                 double d_score = Double.parseDouble(score);
                 double trimmedScore = Double.parseDouble(String.format("%.2f", d_score));
@@ -55,9 +55,13 @@ public class AdminServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/admin-page.jsp");
                 return;
             }
-        } else {
+        } else if (request.getParameter("delete_player") != null) {
             String username = request.getParameter("username");
             deleteFromLeaderboard(session, username);
+        } else if (request.getParameter("explode_session") != null) {
+            session.invalidate();
+            response.sendRedirect(request.getContextPath() + "/login_page.jsp");
+            return;
         }
 
         Leaderboard leaderboard = (Leaderboard) session.getAttribute("leaderboard");

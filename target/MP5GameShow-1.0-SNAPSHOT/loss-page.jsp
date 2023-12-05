@@ -19,6 +19,10 @@
             <a href="login_page.jsp">Try Again?</a>
         </main>
         <%
+            if (session == null || session.getAttribute("checked") == null) {
+                response.sendRedirect(request.getContextPath() + "/seshed");
+                return;
+            }
             HttpSession sesh = request.getSession(false);
             if (sesh != null) {
                 if (sesh.getAttribute("username") != null) {

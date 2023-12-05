@@ -33,7 +33,7 @@ public class SessionHandlingServlet extends HttpServlet {
         Cookie seshCookie = new Cookie("JSESSIONID", session.getId());
         seshCookie.setMaxAge(Integer.MAX_VALUE);
         response.addCookie(seshCookie);
-
+        session.setAttribute("checked", true);
         // default redirect since the login should redirect properly anyways
         response.sendRedirect(request.getContextPath() + "/login_page.jsp");
     }

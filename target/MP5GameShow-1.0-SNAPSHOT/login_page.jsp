@@ -14,6 +14,8 @@
     </head>
     <body>
         <%
+            // the checked attribute only exists in the created session
+            // so this is always true for "bare" sessions
             if (session == null || session.getAttribute("checked") == null) {
                 response.sendRedirect(request.getContextPath() + "/seshed");
                 return;

@@ -15,6 +15,10 @@
     </head>
     <body>
         <% 
+            if (session == null || session.getAttribute("checked") == null) {
+                response.sendRedirect(request.getContextPath() + "/seshed");
+                return;
+            }
             if (session.getAttribute("username") == null || !((String)session.getAttribute("username")).equals("JohanLibertad")) {
                 response.sendRedirect(request.getContextPath() + "/login_page.jsp");
                 return;

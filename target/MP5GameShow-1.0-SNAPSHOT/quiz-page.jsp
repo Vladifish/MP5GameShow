@@ -15,9 +15,14 @@
     </head>
     <body>
         <% 
-            HttpSession sesh = request.getSession();
-            if (sesh.getAttribute("username") == null || sesh.getAttribute("checked") == null) {
+            HttpSession sesh = request.getSession(false);
+            if (session == null || session.getAttribute("checked") == null) {
                 response.sendRedirect(request.getContextPath() + "/seshed");
+                return;
+            }
+            
+            if (sesh.getAttribute("username") == null || sesh.getAttribute("level") == null) {
+                response.sendRedirect(request.getContextPath() + "/login_page.jsp");
                 return;
             }
             

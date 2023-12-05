@@ -37,7 +37,9 @@
                 <input type="submit" name="add_player" value="ADD">
                 <input type="submit" name="delete_player" value="DELETE">
             </form>
-                
+            <% if (session.getAttribute("player-add-check") != null) {%>
+            <p class="error-message"><%= session.getAttribute("player-add-check") %></p>
+            <% }%>
             <h3>Leaderboard</h3>
             <ol>
                 <% if (ranking != null){

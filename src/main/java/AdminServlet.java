@@ -44,11 +44,16 @@ public class AdminServlet extends HttpServlet {
         if (request.getParameter("add_player") != null) {
             String username = request.getParameter("username");
             String score = request.getParameter("score");
-
-            if (score != null) {
+            int x=2;
+            if (score != null && !score.trim().equals("")) {
                 double d_score = Double.parseDouble(score);
                 double trimmedScore = Double.parseDouble(String.format("%.2f", d_score));
                 addToLeaderboard(session, new Player(username, trimmedScore));
+                session.setAttribute("player-add-check", "");
+            } else {
+                session.setAttribute("player-add-check", "Please Enter Score");
+                response.sendRedirect(request.getContextPath() + "/admin-page.jsp");
+                return;
             }
         } else {
             String username = request.getParameter("username");

@@ -23,7 +23,7 @@ header {
     margin-bottom: 1rem;
     
     background: rgb(163, 163, 163);
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid black;
     
     display: flex;
     flex-direction: row;

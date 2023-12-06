@@ -43,15 +43,18 @@
             <h3>Your Final Score is: $<%= sesh.getAttribute("score")%></h3>
             <!-- Redirect Here -->
             <a href="login_page.jsp">Try Again?</a>
-        </main>
-            
+            <h3>Leaderboard</h3>
             <ol type="1">
                 <%for(int i=0; i<ranking.length; i++){ 
                     Player p = ranking[i];
                 %>
+                    <div class="line-1px"></div>    
                     <li><b><%=p.name%></b> <p>$<%=p.score%></p></li>
                 <% }%>    
             </ol>
+        </main>
+            
+            
         <!-- fixed scrolling leaderboard here-->
         <%
             sesh.removeAttribute("username");

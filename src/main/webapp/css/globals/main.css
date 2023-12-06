@@ -13,6 +13,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     font-family: "Trebuchet MS", sans-serif;
     font-size: 16px;
     --semi-bold: 600;
+    --green: rgb(31, 153, 31); 
+    --red: rgb(255, 25, 25);
 }
 
 header {
@@ -80,8 +82,11 @@ input[type="text"], input[type="submit"] {
 input[type="submit"]:hover {
     text-shadow: 2px black;
     border-color: black;
-    color: blue;
     cursor: pointer;
+}
+
+.blue-hover:hover {
+    color:blue;
 }
 
 /* Link Effects */
@@ -110,7 +115,7 @@ a:hover {
 }
 
 .green-txt {
-    color: rgb(31, 153, 31);
+    color: var(--green);
 }
 
 .slight-padding {

@@ -12,7 +12,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/globals/main.css">
         <link rel="stylesheet" href="css/globals/leaderboard.css">
-        <title>JSP Page</title>
+        <link rel="stylesheet" href="css/admin-page.css">
+        <title>Kinderheim</title>
     </head>
     <body>
         <% 
@@ -33,16 +34,19 @@
         <main>
             <h1>Hello Johan!</h1>
 
-            <h3>Add / Delete a player</h3>
+            
             <form action="<%=request.getContextPath()%>/monster" method="POST">
-                <label>Enter username:</label><input type="text" name="username" required>
-                <label>Enter score: </label><input type="number" name="score"><br>
-                <input type="submit" name="add_player" value="ADD">
-                <input type="submit" name="delete_player" value="DELETE">
+                <h3>Add / Delete a player</h3>
+                <label>Username</label><input type="text" name="username" required>
+                <label>Score </label><input type="number" name="score"><br>
+                <span>
+                    <input class="soft-button green-button" type="submit" name="add_player" value="ADD">
+                    <input class="soft-button red-button" type="submit" name="delete_player" value="DELETE">
+                </span>
             </form>
 
             <form action="<%=request.getContextPath()%>/monster" method="POST">
-                <input class="session-delete" type="submit" name="explode_session" value="HARD RESET">
+                <input class="hard-reset" type="submit" name="explode_session" value="HARD RESET">
             </form>
             <% if (session.getAttribute("player-add-check") != null) {%>
             <p class="error-message"><%= session.getAttribute("player-add-check") %></p>

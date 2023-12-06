@@ -59,7 +59,7 @@
 
                     <input type="radio" id="radioD" name="answer" value="D">
                     <label for="radioD"><%= question[1][3] %></label>
-            <input type="submit" value="Final Answer">
+            <input class="blue-hover" type="submit" value="Final Answer">
         </form>
         </main>
         <%} %>

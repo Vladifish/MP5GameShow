@@ -16,13 +16,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 header {
-    width: 100%;
-    position: fixed;
-    padding: 1rem;
-    padding-right: 1.5rem;
+    width: 95%;
+    position: relative;
+    padding: 1rem 2.5%;
     height: 2rem;
+    margin-bottom: 1rem;
     
     background: rgb(163, 163, 163);
+    border-bottom: 1px solid black;
     
     display: flex;
     flex-direction: row;
@@ -62,7 +63,7 @@ main {
     margin-right: auto; 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     
 }

@@ -35,6 +35,9 @@
             
             Player[] ranking = (Player[])sesh.getAttribute("ranking");
         %>
+        <header>
+            <h4>Who Wants to?</h4>
+        </header>
         <main>
             <h1>Congratulations <%= sesh.getAttribute("username") %>!</h1>
             <h3>Your Final Score is: $<%= sesh.getAttribute("score")%></h3>

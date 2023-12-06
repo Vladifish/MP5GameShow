@@ -26,9 +26,11 @@
             }
             Player[] ranking = (Player[])session.getAttribute("ranking");
         %>
-
-        <main>
+        <header>
+            <h4>Who Wants to?</h4>
             <a href="redirectpage.jsp">Go back</a>
+        </header>
+        <main>
             <h1>Hello Johan!</h1>
 
             <h3>Add/Delete a player</h3>

@@ -15,6 +15,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     --semi-bold: 600;
 }
 
+.red-txt {
+    color: rgb(255, 37, 37)(180, 32, 32);
+}
+
+.green-txt {
+    color: rgb(64, 255, 64)(180, 32, 32);
+}
+
 p, input, label {
     font-size: 1rem;
 }

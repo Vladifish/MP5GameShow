@@ -36,13 +36,14 @@
             String score = (String)sesh.getAttribute("score");
         %>
         <% if (sesh != null) {%>
-        
-        <main>
+        <header>
             <a href="loss-page.jsp" id="give-up-button">Give Up</a>
+        </header>
+        <main>
             <section id="question-section"> 
                 <h1>Question #<%= level%></h1>
                 <h3><%= username%>, <%= question[0][0]%></h3>
-                <h3>Score: $<%= score%></h3>
+                <h3>Score: <div class="green-txt">$<%= score%></div></h3>
             </section>
 
             <form class="quiz-form" action="/MP5GameShow/QuizServlet" method="post">

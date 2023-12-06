@@ -37,6 +37,7 @@
         %>
         <% if (sesh != null) {%>
         <header>
+            <h4>Who Wants to?</h4>
             <a href="loss-page.jsp" id="give-up-button">Give Up</a>
         </header>
         <main>

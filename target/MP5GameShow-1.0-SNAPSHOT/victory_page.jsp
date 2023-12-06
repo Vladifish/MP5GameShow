@@ -49,7 +49,7 @@
                 <%for(int i=0; i<ranking.length; i++){ 
                     Player p = ranking[i];
                 %>
-                    <li><p><%=p.name%></p> <p>$<%=p.score%></p></li>
+                    <li><b><%=p.name%></b> <p>$<%=p.score%></p></li>
                 <% }%>    
             </ol>
         <!-- fixed scrolling leaderboard here-->

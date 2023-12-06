@@ -7,8 +7,15 @@ ol {
 li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 li * {
     width: auto;
+}
+
+.line-1px {
+    width: 100%;
+    border-top: 1px solid black;
+    margin-bottom: 0.25rem;
 }

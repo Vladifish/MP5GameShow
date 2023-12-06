@@ -51,7 +51,8 @@
             <ol>
                 <% if (ranking != null){
                     for (Player p : ranking) {%>
-                        <li><p><%=p.name%></p> <p>$<%=p.score%></p></li>
+                        <div class="line-1px"></div>
+                        <li><b><%=p.name%></b> <p>$<%=p.score%></p></li>
                 <%  } 
                  }%>
             </ol>

@@ -44,7 +44,7 @@
             <section id="question-section"> 
                 <h1>Question #<%= level%></h1>
                 <h3><%= username%>, <%= question[0][0]%></h3>
-                <h3>Score: <div class="green-txt">$<%= score%></div></h3>
+                <span class="score-text"><h3>Score: </h3><h3 class="green-txt">$<%= score%></h3></span>
             </section>
 
             <form class="quiz-form" action="/MP5GameShow/QuizServlet" method="post">

@@ -102,3 +102,13 @@ a:hover {
     border-color: black;
     color: blue;
 }
+
+/* Additional tags for minor element changes */
+
+.flex-centered {
+    justify-content: center;
+}
+
+.green-txt {
+    color: rgb(31, 153, 31);
+}

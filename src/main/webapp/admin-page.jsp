@@ -33,7 +33,7 @@
         <main>
             <h1>Hello Johan!</h1>
 
-            <h3>Add/Delete a player</h3>
+            <h3>Add / Delete a player</h3>
             <form action="<%=request.getContextPath()%>/monster" method="POST">
                 <label>Enter username:</label><input type="text" name="username" required>
                 <label>Enter score: </label><input type="number" name="score"><br>

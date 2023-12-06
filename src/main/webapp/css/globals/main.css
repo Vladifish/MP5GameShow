@@ -112,3 +112,8 @@ a:hover {
 .green-txt {
     color: rgb(31, 153, 31);
 }
+
+.slight-padding {
+    padding-left: 1%;
+    width: 99%;
+}

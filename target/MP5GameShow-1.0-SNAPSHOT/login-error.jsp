@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="css/globals/main.css">
         <title>Error with login</title>
     </head>
-    <body>
+    <body class="slight-padding">
         <h1>Error, no username found</h1>
         <a href="login_page.jsp">Go back</a>
     </body>

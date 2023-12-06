@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="css/globals/main.css">
         <title>Redirecting..</title>
     </head>
-    <body>
+    <body class="slight-padding">
         <h1>Player Not Logged In! Redirecting</h1>
         <% 
             long start = System.currentTimeMillis();

@@ -13,14 +13,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     font-family: "Trebuchet MS", sans-serif;
     font-size: 16px;
     --semi-bold: 600;
+    --green: rgb(31, 153, 31); 
+    --red: rgb(255, 25, 25);
 }
 
-.red-txt {
-    color: rgb(255, 37, 37)(180, 32, 32);
-}
-
-.green-txt {
-    color: rgb(64, 255, 64)(180, 32, 32);
+header {
+    width: 95%;
+    position: relative;
+    padding: 1rem 2.5%;
+    height: 2rem;
+    margin-bottom: 1rem;
+    
+    background: rgb(163, 163, 163);
+    border-bottom: 2px solid black;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 p, input, label {
@@ -43,18 +53,19 @@ h3 {
 
 body {
     margin: 0;
-    padding: 0 5vw;
     background-color: lightgrey;
-    width: 90vw;
+    width: 100vw;
     height: 100vh;
 }
 
 main {
-    width: 100%;
+    width: 90%;
     height: 100vh;
+    margin-left: auto; 
+    margin-right: auto; 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     
 }
@@ -71,8 +82,11 @@ input[type="text"], input[type="submit"] {
 input[type="submit"]:hover {
     text-shadow: 2px black;
     border-color: black;
-    color: blue;
     cursor: pointer;
+}
+
+.blue-hover:hover {
+    color:blue;
 }
 
 /* Link Effects */
@@ -94,7 +108,17 @@ a:hover {
     color: blue;
 }
 
-/* extra */
-.username-error {
-    color: red;
+/* Additional tags for minor element changes */
+
+.flex-centered {
+    justify-content: center;
+}
+
+.green-txt {
+    color: var(--green);
+}
+
+.slight-padding {
+    padding-left: 1%;
+    width: 99%;
 }

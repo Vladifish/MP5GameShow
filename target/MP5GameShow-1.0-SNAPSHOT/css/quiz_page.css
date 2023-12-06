@@ -17,6 +17,16 @@ main {
     text-align: center;
 }
 
+#question-section * {
+    width: auto;
+}
+
+.score-text {
+    display: flex;
+    justify-content: center;
+    column-gap: 0.25rem;
+}
+
 .quiz-form {
     width: 100%;
     display: grid;
@@ -30,6 +40,7 @@ main {
 
 #give-up-button {
     margin-left: auto;
+    height: -45.5rem;
 }
 
 /* Form Input Tech */

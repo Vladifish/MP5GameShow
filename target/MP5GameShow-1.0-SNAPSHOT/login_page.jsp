@@ -24,11 +24,11 @@
                 response.sendRedirect(request.getContextPath() + "/quiz-page.jsp");
             }   
         %>
-        <main>
+        <main class="flex-centered">
             <h1>Who wants to?</h1>
             <form action="/MP5GameShow/LoginServlet" method="post">
                 <label for="username">Enter a Username: </label><input type="text" name="username" placeholder="username" required/>
-                <input type="submit">
+                <input class="blue-hover" type="submit" name="submit">
             </form>
         </main>
         

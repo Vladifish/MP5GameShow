@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="css/globals/main.css">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body class="slight-padding">
         <h1>Oops Something Went Wrong!</h1>
         <a href="redirectpage.jsp">Go back</a>
         <% 

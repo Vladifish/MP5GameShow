@@ -14,6 +14,9 @@
         
     </head>
     <body>
+        <header>
+            <h4>Who Wants to?</h4>
+        </header>
         <main>
             <h1>Uh Oh! You Lost</h1>
             <a href="login_page.jsp">Try Again?</a>

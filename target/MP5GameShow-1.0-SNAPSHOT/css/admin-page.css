@@ -1,0 +1,51 @@
+main {
+    height: 125vh;
+}
+
+form {
+    /* text-stuff */
+    text-align: center;
+
+    width: 35%;
+    border: 2px solid black;
+    background-color: rgb(190, 190, 190);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.5rem;
+    padding: 1rem;
+
+}
+
+form input[type="text"], form input[type="number"] {
+    width: 50%;
+}
+
+/* Button Stuff */
+
+form span {
+    width: 100%;
+}
+.soft-button {
+    width: 25%;
+    padding: 2% 5%;
+}
+.hard-reset {
+    width: 50%;
+    padding: 2% 5%;
+}
+
+/* Button Hover Effects */
+
+.green-button:hover {
+    color: var(--green);
+}
+.red-button:hover {
+    color: var(--red);
+}
+.hard-reset:hover {
+    color: var(--red);
+    background-color: rgb(255, 110, 110);
+}
+

@@ -37,13 +37,14 @@
         %>
         <% if (sesh != null) {%>
         <header>
+            <h4>Who Wants to?</h4>
             <a href="loss-page.jsp" id="give-up-button">Give Up</a>
         </header>
         <main>
             <section id="question-section"> 
                 <h1>Question #<%= level%></h1>
                 <h3><%= username%>, <%= question[0][0]%></h3>
-                <h3>Score: <div class="green-txt">$<%= score%></div></h3>
+                <span class="score-text"><h3>Score: </h3><h3 class="green-txt">$<%= score%></h3></span>
             </section>
 
             <form class="quiz-form" action="/MP5GameShow/QuizServlet" method="post">
@@ -58,7 +59,7 @@
 
                     <input type="radio" id="radioD" name="answer" value="D">
                     <label for="radioD"><%= question[1][3] %></label>
-            <input type="submit" value="Final Answer">
+            <input class="blue-hover" type="submit" value="Final Answer">
         </form>
         </main>
         <%} %>

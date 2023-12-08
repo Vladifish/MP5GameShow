@@ -1,6 +1,10 @@
 # MP5GameShow
 Who wants to be a millionaire clone, made with Java Servlets and JSPs.
 
+## Configuration
+- Glassfish 4.1.2
+- Java 7
+
 ## Features
 - Error checking
 - Question Randomizer Algorithm

@@ -45,12 +45,13 @@
             <a href="login_page.jsp">Try Again?</a>
             <h3>Leaderboard</h3>
             <ol type="1">
-                <%for(int i=0; i<ranking.length; i++){ 
-                    Player p = ranking[i];
-                %>
-                    <div class="line-1px"></div>    
-                    <li><b><%=p.name%></b> <p>$<%=p.score%></p></li>
-                <% }%>    
+                <% if (ranking != null){
+                    for (int i=0; i<ranking.length; i++) {
+                        Player p = ranking[i];%>
+                        <div class="line-1px"></div>
+                        <li><b><%=i+1%>. <%=p.name%></b> <p>$<%=p.score%></p></li>
+                <%  } 
+                 }%>
             </ol>
         </main>
             

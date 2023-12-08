@@ -54,9 +54,10 @@
             <h3>Leaderboard</h3>
             <ol>
                 <% if (ranking != null){
-                    for (Player p : ranking) {%>
+                    for (int i=0; i<ranking.length; i++) {
+                        Player p = ranking[i];%>
                         <div class="line-1px"></div>
-                        <li><b><%=p.name%></b> <p>$<%=p.score%></p></li>
+                        <li><b><%=i+1%>. <%=p.name%></b> <p>$<%=p.score%></p></li>
                 <%  } 
                  }%>
             </ol>

@@ -1,0 +1,26 @@
+.planet {
+    width: 20vw;
+    height: 20vh;
+    position: fixed;
+    background: no-repeat center;
+    z-index: -99;
+    animation-name: zoom;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;  
+    top: 0;
+}
+
+.planet img {
+    object-fit: cover;
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(100%, 100%);
+        opacity: 80%;
+    }
+    to {
+        transform: scale(200%, 200%);
+        opacity: 40%;
+    }
+}

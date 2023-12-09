@@ -8,6 +8,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 /* Root things */
+@font-face {
+    font-family: "scratch-font";
+    src: url("IsiniScript.ttf");
+  }
+
 :root {
     /* --black-primary: */
     font-family: "Trebuchet MS", sans-serif;
@@ -16,7 +21,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     --green: rgb(31, 153, 31); 
     --red: rgb(255, 25, 25);
 }
-
 header {
     width: 95%;
     position: relative;
@@ -39,8 +43,13 @@ p, input, label {
 
 label {
     font-family: "Trebuchet MS", sans-serif;
+    font-size: 1.25rem;
 }
 
+h1{
+    font-family: "scratch-font", "Trebuchet MS", sans-serif;
+    
+}
 h1 {
     font-size: 2.5rem;
 }
@@ -63,19 +72,20 @@ main {
     height: 100vh;
     margin-left: auto; 
     margin-right: auto; 
+
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    
+
 }
 
 /* Input styling*/
 
-input[type="text"], input[type="submit"] {
+input[type="text"], input[type="submit"], input[type="number"] {
     font-family: "Trebuchet MS", sans-serif;
     background-color: white;
-    border: 1px solid gray;
+    border: 1px solid rgb(31, 31, 31);
     user-select: none;
 }
 
@@ -116,6 +126,10 @@ a:hover {
 
 .green-txt {
     color: var(--green);
+}
+
+.red-txt {
+    color: var(--red);
 }
 
 .slight-padding {

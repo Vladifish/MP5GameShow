@@ -44,7 +44,7 @@
             <h1>Uh Oh! You Lost</h1>
             <h3>Score: $<%=session.getAttribute("score")%></h1>
             <a href="login_page.jsp">Try Again?</a>
-            <h3>Leaderboard</h3>
+            <h1>The List</h1>
             <ol type="1">
                 <% if (ranking != null){
                     for (int i=0; i<ranking.length; i++) {

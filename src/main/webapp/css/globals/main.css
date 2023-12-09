@@ -8,6 +8,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 /* Root things */
+@font-face {
+    font-family: "scratch-font";
+    src: url("IsiniScript.ttf");
+  }
+
 :root {
     /* --black-primary: */
     font-family: "Trebuchet MS", sans-serif;
@@ -38,8 +43,13 @@ p, input, label {
 
 label {
     font-family: "Trebuchet MS", sans-serif;
+    font-size: 1.25rem;
 }
 
+h1{
+    font-family: "scratch-font", "Trebuchet MS", sans-serif;
+    
+}
 h1 {
     font-size: 2.5rem;
 }
@@ -75,7 +85,7 @@ main {
 input[type="text"], input[type="submit"] {
     font-family: "Trebuchet MS", sans-serif;
     background-color: white;
-    border: 1px solid gray;
+    border: 1px solid rgb(31, 31, 31);
     user-select: none;
 }
 

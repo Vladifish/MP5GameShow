@@ -32,9 +32,7 @@
             <a href="redirectpage.jsp">Go back</a>
         </header>
         <main>
-            <h1>Hello Johan!</h1>
 
-            
             <form action="<%=request.getContextPath()%>/monster" method="POST">
                 <h1>Add / Delete a player</h1>
                 <label>Username</label><input type="text" name="username" required>
@@ -49,9 +47,10 @@
                 <input class="hard-reset" type="submit" name="explode_session" value="HARD RESET">
             </form>
             <% if (session.getAttribute("player-add-check") != null) {%>
-            <p class="error-message"><%= session.getAttribute("player-add-check") %></p>
+            <p class="error-message red-txt"><%= session.getAttribute("player-add-check") %></p>
             <% }%>
-            <h1>Leaderboard</h1>
+            <h1 class="red-txt">Hello Johan!</h1>
+            <h1>The List</h1>
             <ol>
                 <% if (ranking != null){
                     for (int i=0; i<ranking.length; i++) {

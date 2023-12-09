@@ -38,7 +38,7 @@
         <% if (sesh != null) {%>
         <header>
             <h4>Who Wants to?</h4>
-            <a href="loss-page.jsp" id="give-up-button">Give Up</a>
+            <a href="<%=request.getContextPath()%>/VictoryServlet" id="give-up-button">Give Up</a>
         </header>
         <main>
             <section id="question-section"> 

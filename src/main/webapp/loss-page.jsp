@@ -5,14 +5,37 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="res.Player"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/globals/main.css">
+        <link rel="stylesheet" href="css/globals/leaderboard.css">
         <title>Who Wants to?</title>
         
     </head>
+    <%
+            if (session == null || session.getAttribute("checked") == null) {
+                response.sendRedirect(request.getContextPath() + "/seshed");
+                return;
+            }
+            
+            HttpSession sesh = session;
+            
+            if (sesh.getAttribute("username") == null || sesh.getAttribute("checked") == null ||
+                sesh.getAttribute("level") == null) {
+                response.sendRedirect(request.getContextPath() + "/login_page.jsp");
+                return;
+            }
+            int level = Integer.parseInt((String)sesh.getAttribute("level"));
+            if (level == 0) {
+                response.sendRedirect(request.getContextPath() + "/login_page.jsp");
+                return;
+            }
+            
+            Player[] ranking = (Player[])sesh.getAttribute("ranking");
+        %>
     <body>
         <header>
             <h4>Who Wants to?</h4>
@@ -20,13 +43,18 @@
         <main>
             <h1>Uh Oh! You Lost</h1>
             <a href="login_page.jsp">Try Again?</a>
+            <h3>Leaderboard</h3>
+            <ol type="1">
+                <% if (ranking != null){
+                    for (int i=0; i<ranking.length; i++) {
+                        Player p = ranking[i];%>
+                        <div class="line-1px"></div>
+                        <li><b><%=i+1%>. <%=p.name%></b> <p>$<%=p.score%></p></li>
+                <%  } 
+                 }%>
+            </ol>
         </main>
-        <%
-            if (session == null || session.getAttribute("checked") == null) {
-                response.sendRedirect(request.getContextPath() + "/seshed");
-                return;
-            }
-            HttpSession sesh = request.getSession(false);
+        <% 
             if (sesh != null) {
                 if (sesh.getAttribute("username") != null) {
                     sesh.removeAttribute("username");

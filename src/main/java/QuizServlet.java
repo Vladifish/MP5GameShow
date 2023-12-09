@@ -44,8 +44,13 @@ public class QuizServlet extends HttpServlet {
                         session.setAttribute("score", "0");
                 } else {
                         String ans = request.getParameter("answer");
-                        if (!checkAnswer(session, ans)) // check if the player answered right
-                                request.getRequestDispatcher("loss-page.jsp").forward(request, response);
+                        if (!checkAnswer(session, ans)) // check if the player answered right {}
+                        {
+                                response.sendRedirect(request.getContextPath() + "/VictoryServlet");
+                                return;
+                                // request.getRequestDispatcher("loss-page.jsp").forward(request, response);
+                        }
+
                 }
 
                 // before exit we update everything

@@ -19,6 +19,7 @@ import res.*;
 @WebServlet(urlPatterns = "/VictoryServlet", name = "VictoryServlet")
 public class VictoryServlet extends HttpServlet {
     private final String ADMIN = "JohanLibertad";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,18 +45,25 @@ public class VictoryServlet extends HttpServlet {
             session.setAttribute("leaderboard", leaderboard);
         } else {
             leaderboard = (Leaderboard) session.getAttribute("leaderboard");
-            //leaderboard = new Leaderboard();
+            // leaderboard = new Leaderboard();
         }
 
         String username = (String) session.getAttribute("username");
-        double score = Double.parseDouble((String)session.getAttribute("score"));
+        double score = Double.parseDouble((String) session.getAttribute("score"));
 
         Player player = new Player(username, score);
-        
+
         leaderboard.checkInsert(player);
 
         session.setAttribute("ranking", leaderboard.toArray());
-        response.sendRedirect(request.getContextPath() + "/victory_page.jsp");
+        int level = Integer.parseInt((String) session.getAttribute("level"));
+
+        if (level == 99) {
+            response.sendRedirect(request.getContextPath() + "/victory_page.jsp");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/loss-page.jsp");
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the

@@ -16,7 +16,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     --green: rgb(31, 153, 31); 
     --red: rgb(255, 25, 25);
 }
-
 header {
     width: 95%;
     position: relative;
@@ -63,11 +62,12 @@ main {
     height: 100vh;
     margin-left: auto; 
     margin-right: auto; 
+
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    
+
 }
 
 /* Input styling*/
@@ -116,6 +116,10 @@ a:hover {
 
 .green-txt {
     color: var(--green);
+}
+
+.red-txt {
+    color: var(--red);
 }
 
 .slight-padding {

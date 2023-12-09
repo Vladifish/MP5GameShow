@@ -42,6 +42,7 @@
         </header>
         <main>
             <h1>Uh Oh! You Lost</h1>
+            <h3>Score: $<%=session.getAttribute("score")%></h1>
             <a href="login_page.jsp">Try Again?</a>
             <h3>Leaderboard</h3>
             <ol type="1">

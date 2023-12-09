@@ -27,7 +27,7 @@
             <h1>WHO Wants.. to?</h1>
             <form action="/MP5GameShow/LoginServlet" method="post">
                 <label for="username">Enter a Username: </label><input type="text" name="username" placeholder="username" required/>
-                <input  class="blue-hover" type="submit" name="submit">
+                <input  class="blue-hover" type="submit" name="submit" value="ENTER">
             </form>
             <p class="username-error red-txt">Username must have at most 10 characters</p>
             <div class="planet">

@@ -82,7 +82,7 @@ main {
 
 /* Input styling*/
 
-input[type="text"], input[type="submit"] {
+input[type="text"], input[type="submit"], input[type="number"] {
     font-family: "Trebuchet MS", sans-serif;
     background-color: white;
     border: 1px solid rgb(31, 31, 31);

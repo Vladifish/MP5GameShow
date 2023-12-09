@@ -36,7 +36,7 @@
 
             
             <form action="<%=request.getContextPath()%>/monster" method="POST">
-                <h3>Add / Delete a player</h3>
+                <h1>Add / Delete a player</h1>
                 <label>Username</label><input type="text" name="username" required>
                 <label>Score </label><input type="number" name="score"><br>
                 <span>
@@ -51,7 +51,7 @@
             <% if (session.getAttribute("player-add-check") != null) {%>
             <p class="error-message"><%= session.getAttribute("player-add-check") %></p>
             <% }%>
-            <h3>Leaderboard</h3>
+            <h1>Leaderboard</h1>
             <ol>
                 <% if (ranking != null){
                     for (int i=0; i<ranking.length; i++) {

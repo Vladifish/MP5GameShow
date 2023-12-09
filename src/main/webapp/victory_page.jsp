@@ -43,7 +43,7 @@
             <h3>Your Final Score is: $<%= sesh.getAttribute("score")%></h3>
             <!-- Redirect Here -->
             <a href="login_page.jsp">Try Again?</a>
-            <h3>Leaderboard</h3>
+            <h1>Leaderboard</h1>
             <ol type="1">
                 <% if (ranking != null){
                     for (int i=0; i<ranking.length; i++) {

@@ -123,6 +123,9 @@ public class QuizServlet extends HttpServlet {
                 // question[0][1] = correct answer
                 // question[0][2] = difficulty
 
+                if (ans == null)
+                        return false;
+
                 String[][] question = (String[][]) session.getAttribute("current-question");
                 long time_end = System.currentTimeMillis();
                 computeScore(session, question[0][2], time_end);

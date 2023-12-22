@@ -32,9 +32,9 @@
             <a href="redirectpage.jsp">Go back</a>
         </header>
         <main>
-
-            <form action="<%=request.getContextPath()%>/monster" method="POST">
+            <section>
                 <h1>Add / Delete a player</h1>
+            <form action="<%=request.getContextPath()%>/monster" method="POST">
                 <label>Username</label><input type="text" name="username" required>
                 <label>Score </label><input type="number" name="score"><br>
                 <span>
@@ -46,10 +46,15 @@
             <form action="<%=request.getContextPath()%>/monster" method="POST">
                 <input class="hard-reset" type="submit" name="explode_session" value="HARD RESET">
             </form>
+        
             <% if (session.getAttribute("player-add-check") != null) {%>
-            <p class="error-message red-txt"><%= session.getAttribute("player-add-check") %></p>
-            <% }%>
-            <h1 class="red-txt">Hello Johan!</h1>
+                <p class="error-message red-txt"><%= session.getAttribute("player-add-check") %></p>
+                <% }%>
+
+        </section>
+
+            
+            <section>
             <h1>The List</h1>
             <ol>
                 <% if (ranking != null){
@@ -60,7 +65,7 @@
                 <%  } 
                  }%>
             </ol>
-            <% %>
+        </section>
         </main>
     </body>
 </html>

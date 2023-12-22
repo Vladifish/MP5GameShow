@@ -31,8 +31,8 @@ public class Leaderboard {
             if (old_p.score >= p.score)
                 return; // old still beats
 
-            old_p.score = p.score;
             startIndex = findIndex(p.name);
+            ranking[startIndex].score = p.score;
         } else {
             // check if new player fits in ranking
             if (length < 20) {
@@ -101,7 +101,8 @@ public class Leaderboard {
     }
 
     // binary search ;;;;
-    private int findIndex(String playerName) {
+    // deprecated
+    private int findIndexBS(String playerName) {
         int l = 0;
         int r = length - 1;
         Player p = playerMap.get(playerName);
@@ -116,6 +117,17 @@ public class Leaderboard {
                 l = m + 1;
             else
                 r = m - 1;
+        }
+        return 0; // would be zero if the item is yet to be added
+    }
+
+    // linear search variation
+    // used this since we lose sorting order
+    private int findIndex(String playerName) {
+        for (int i = length - 1; i >= 0; i--) {
+            if (ranking[i].name.equals(playerName)) {
+                return i;
+            }
         }
         return 0; // would be zero if the item is yet to be added
     }
